@@ -1,11 +1,29 @@
-import React, { useState } from "react";
-import { ChevronDown, Mail, Phone, Facebook, Twitter, Linkedin, ArrowRight, Sparkles } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { ChevronDown, Mail, Phone, Facebook, Twitter, Linkedin, ArrowRight, Sparkles, Menu, X } from "lucide-react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import photo from "../assets/logo.png"
 
 const Header = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+    setActiveDropdown(null);
+  }, [location.pathname]);
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navigationItems = [
     {
@@ -76,28 +94,13 @@ const Header = () => {
   const handleNavClick = (path) => {
     navigate(path);
     setActiveDropdown(null);
-  };
-
-  const getDropdownPosition = (itemName, index) => {
-    const baseLeft = 200 + (index * 150);
-    const dropdownWidth = 280;
-    const viewportWidth = window.innerWidth;
-    
-    // For Contact dropdown, position it from the right
-    if (itemName === "Contact") {
-      return Math.max(20, viewportWidth - dropdownWidth - 20);
-    }
-    
-    // For other dropdowns, check if they would go outside the viewport
-    if (baseLeft + dropdownWidth > viewportWidth - 20) {
-      return Math.max(20, viewportWidth - dropdownWidth - 20);
-    }
-    
-    return baseLeft;
+    setIsMobileMenuOpen(false);
   };
 
   return (
-    <header className="relative bg-gradient-to-br from-slate-900 via-gray-900 to-black overflow-hidden">
+    <header className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${
+      isScrolled ? 'bg-gray-900/95 backdrop-blur-md shadow-lg' : 'bg-gradient-to-br from-slate-900/95 via-gray-900/95 to-black/95 backdrop-blur-sm'
+    } overflow-visible`}>
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -left-40 w-80 h-80 bg-gradient-to-r from-purple-600/20 to-indigo-600/20 rounded-full blur-3xl animate-pulse"></div>
@@ -110,8 +113,8 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Top Info Bar */}
-      <div className="relative z-20 flex justify-between items-center px-6 py-3 bg-black/40 backdrop-blur-sm border-b border-white/10">
+      {/* Top Info Bar - Hidden on mobile */}
+      <div className="relative z-20 hidden lg:flex justify-between items-center px-6 py-3 bg-black/40 backdrop-blur-sm border-b border-white/10">
         <div className="flex items-center space-x-6 text-gray-300">
           <div className="flex items-center space-x-2 hover:text-white transition-colors duration-300 cursor-pointer">
             <Mail size={16} className="text-cyan-400" />
@@ -163,17 +166,18 @@ const Header = () => {
       </div>
 
       {/* Main Navigation */}
-      <div className="relative z-20 flex justify-between items-center px-6 py-5">
+      <div className="relative z-20 flex justify-between items-center px-4 lg:px-6 py-4">
+        {/* Logo */}
         <Link
           to="/"
           className="flex items-center group cursor-pointer"
         >
-          <div className="w-24 h-16 rounded-lg flex items-center justify-center group-hover:scale-105 transition-all duration-500 relative overflow-hidden">
+          <div className="w-16 h-12 lg:w-24 lg:h-16 rounded-lg flex items-center justify-center group-hover:scale-105 transition-all duration-500 relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 animate-pulse"></div>
             <img
               src={photo}
               alt="Symbiosis Logo"
-              className="w-full h-full object-contain p-2 transform hover:rotate-3 transition-transform duration-300 relative z-10"
+              className="w-full h-full object-contain p-1 lg:p-2 transform hover:rotate-3 transition-transform duration-300 relative z-10"
               style={{
                 filter: 'drop-shadow(0 0 8px rgba(6, 182, 212, 0.3))'
               }}
@@ -182,25 +186,18 @@ const Header = () => {
           </div>
         </Link>
 
-        <nav className="relative">
+        {/* Desktop Navigation - Centered */}
+        <nav className="hidden lg:block relative flex-1 flex justify-center ml-8">
           <ul className="flex items-center space-x-8">
             {navigationItems.map((item, index) => (
               <li key={item.name} className="relative group">
                 <div className="flex items-center space-x-1">
-                  {item.name === "Home" ? (
-                    <Link
-                      to={item.path}
-                      className="text-white font-medium text-sm tracking-wide hover:text-cyan-400 transition-colors duration-300"
-                    >
-                      {item.name}
-                    </Link>
-                  ) : (
-                    <button
-                      className="text-white font-medium text-sm tracking-wide hover:text-cyan-400 transition-colors duration-300"
-                    >
-                      {item.name}
-                    </button>
-                  )}
+                  <button
+                    className="text-white font-medium text-sm tracking-wide hover:text-cyan-400 transition-colors duration-300"
+                    onClick={() => item.name === "Home" ? navigate(item.path) : null}
+                  >
+                    {item.name}
+                  </button>
                   {item.name !== "Home" && (
                     <div className="text-white hover:text-cyan-400 transition-all duration-300 p-1 rounded-full hover:bg-white/10">
                       <ChevronDown
@@ -216,23 +213,14 @@ const Header = () => {
 
                 {/* Enhanced Hover Dropdown Menu */}
                 {item.name !== "Home" && (
-                  <div 
-                    className="fixed mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 transform origin-top scale-95 group-hover:scale-100"
-                    style={{
-                      top: '120px',
-                      left: `${getDropdownPosition(item.name, index)}px`,
-                      zIndex: 9999,
-                      minWidth: '280px',
-                      maxHeight: item.name === "Services" ? '400px' : 'auto'
-                    }}
-                  >
+                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100 z-[9999]">
                     {/* Dropdown Container with Glass Effect */}
                     <div className="relative">
                       {/* Glowing Border */}
                       <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/50 via-purple-500/50 to-cyan-500/50 rounded-2xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                       
                       {/* Main Dropdown Content */}
-                      <div className="relative bg-gray-900/95 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl p-3 overflow-hidden">
+                      <div className="relative bg-gray-900 border border-white/20 rounded-2xl shadow-2xl p-3 overflow-hidden min-w-[280px]">
                         {/* Animated Background Pattern */}
                         <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                         
@@ -254,19 +242,19 @@ const Header = () => {
                               style={{ textDecoration: 'none' }}
                             >
                               {/* Hover Background Effect */}
-                              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 opacity-0 group-hover/item:opacity-100 transition-opacity duration-300 rounded-xl"></div>
+                              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 opacity-0 group-hover/item:opacity-100 transition-opacity duration-300 rounded-xl"></div>
                               
                               {/* Item Content */}
                               <div className="relative z-10 flex items-center justify-between">
                                 <div className="flex items-center space-x-3">
                                   <span className="text-lg">{dropdownItem.icon}</span>
-                                  <span className="font-medium text-white group-hover/item:text-cyan-400">{dropdownItem.name}</span>
+                                  <span className="font-medium text-white group-hover/item:text-cyan-400 font-semibold">{dropdownItem.name}</span>
                                 </div>
                                 
                                 {/* Arrow Icon */}
                                 <ArrowRight 
                                   size={16} 
-                                  className="text-gray-400 group-hover/item:text-cyan-400 transform group-hover/item:translate-x-1 transition-all duration-300" 
+                                  className="text-white group-hover/item:text-cyan-400 transform group-hover/item:translate-x-1 transition-all duration-300" 
                                 />
                               </div>
 
@@ -291,16 +279,119 @@ const Header = () => {
           </ul>
         </nav>
 
-        {/* CTA Button */}
-        <div className="flex items-center space-x-4">
-          {/* <button 
-            onClick={() => handleNavClick('/get-started')}
-            className="px-6 py-2.5 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-medium rounded-lg hover:from-cyan-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-500/25"
-          >
-            Get Started
-          </button> */}
-        </div>
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="lg:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors duration-300"
+        >
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div className="lg:hidden fixed inset-0 z-[9999] bg-black/80">
+          <div className="absolute top-0 right-0 w-80 h-full bg-gray-900 border-l border-white/20 transform transition-transform duration-300 ease-in-out">
+            <div className="p-6">
+              {/* Mobile Menu Header */}
+              <div className="flex justify-between items-center mb-8">
+                <h3 className="text-white text-xl font-bold">Menu</h3>
+                <button
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-white p-2 rounded-lg hover:bg-white/10 transition-colors duration-300"
+                >
+                  <X size={24} />
+                </button>
+              </div>
+
+              {/* Mobile Navigation Items */}
+              <nav className="space-y-4">
+                {navigationItems.map((item, index) => (
+                  <div key={item.name} className="border-b border-white/10 pb-4">
+                    {item.dropdown ? (
+                      <div>
+                        <button
+                          onClick={() => handleDropdownToggle(index)}
+                          className="flex items-center justify-between w-full text-white font-medium py-3 hover:text-cyan-400 transition-colors duration-300"
+                        >
+                          <span>{item.name}</span>
+                          <ChevronDown
+                            size={20}
+                            className={`transform transition-transform duration-300 ${
+                              activeDropdown === index ? 'rotate-180' : ''
+                            }`}
+                          />
+                        </button>
+                        
+                        {/* Mobile Dropdown */}
+                        <div className={`overflow-hidden transition-all duration-300 ${
+                          activeDropdown === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                        }`}>
+                          <div className="pl-4 space-y-2 mt-2">
+                            {item.dropdown.map((dropdownItem, dropdownIndex) => (
+                              <Link
+                                key={dropdownIndex}
+                                to={dropdownItem.path}
+                                className="flex items-center space-x-3 text-white hover:text-cyan-400 transition-colors duration-300 py-2"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                              >
+                                <span className="text-lg">{dropdownItem.icon}</span>
+                                <span>{dropdownItem.name}</span>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <Link
+                        to={item.path}
+                        className="block text-white font-medium py-3 hover:text-cyan-400 transition-colors duration-300"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    )}
+                  </div>
+                ))}
+              </nav>
+
+              {/* Mobile Contact Info */}
+              <div className="mt-8 pt-6 border-t border-white/10">
+                <div className="space-y-3 text-sm text-gray-300">
+                  <div className="flex items-center space-x-2">
+                    <Mail size={16} className="text-cyan-400" />
+                    <span>info@symbiosisllp.com</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Phone size={16} className="text-green-400" />
+                    <span>+1 (929) 214-4491</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Phone size={16} className="text-green-400" />
+                    <span>+1 (925) 222-5218</span>
+                  </div>
+                </div>
+
+                {/* Mobile Social Links */}
+                <div className="flex items-center space-x-4 mt-6">
+                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-blue-400 transition-all duration-300 transform hover:scale-110">
+                    <Facebook size={20} />
+                  </a>
+                  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-sky-400 transition-all duration-300 transform hover:scale-110">
+                    <Twitter size={20} />
+                  </a>
+                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-blue-500 transition-all duration-300 transform hover:scale-110">
+                    <Linkedin size={20} />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Bottom gradient line */}
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"></div>

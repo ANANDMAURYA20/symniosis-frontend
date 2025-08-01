@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-
+import {Link} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const FAQSection = () => {
+  const navigate = useNavigate();
   const [openIndex, setOpenIndex] = useState(null);
 
   const faqs = [
@@ -148,10 +150,10 @@ const FAQSection = () => {
             <p className="text-gray-300 mb-6">
               Our support team is here to help you 24/7
             </p>
-            <button className="relative group bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 text-white font-semibold py-3 px-8 rounded-xl shadow-lg shadow-purple-500/25 hover:shadow-xl hover:shadow-purple-500/40 transform hover:scale-105 transition-all duration-300 overflow-hidden">
-              <span className="relative z-10">Contact Support</span>
+              <Link to="/contact" className="relative group bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 text-white font-semibold py-3 px-8 rounded-xl shadow-lg shadow-purple-500/25 hover:shadow-xl hover:shadow-purple-500/40 transform hover:scale-105 transition-all duration-300 overflow-hidden inline-block">
+              <span className="relative z-10 text-lg text-white">Contact Support</span>
               <div className="absolute inset-0 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </button>
+            </Link>
           </div>
         </div>
       </div>

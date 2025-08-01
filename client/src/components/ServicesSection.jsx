@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { 
   FileText,
   Calculator,
@@ -19,6 +20,7 @@ const ServicesSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredService, setHoveredService] = useState(null);
   const [activeTab, setActiveTab] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -45,7 +47,9 @@ const ServicesSection = () => {
       features: ["Document Management", "Process Automation", "Quality Control", "Compliance Support"],
       color: "from-blue-500 to-cyan-500",
       bgColor: "from-blue-500/10 to-cyan-500/10",
-      borderColor: "border-blue-500/30"
+      borderColor: "border-blue-500/30",
+      category: "Accounting",
+      route: "/services/back-office"
     },
     {
       icon: Calculator,
@@ -54,7 +58,9 @@ const ServicesSection = () => {
       features: ["Tax Return Preparation", "Review Services", "Tax Planning", "Compliance Check"],
       color: "from-purple-500 to-pink-500",
       bgColor: "from-purple-500/10 to-pink-500/10",
-      borderColor: "border-purple-500/30"
+      borderColor: "border-purple-500/30",
+      category: "Tax",
+      route: "/services/tax-preparation"
     },
     {
       icon: DollarSign,
@@ -63,7 +69,9 @@ const ServicesSection = () => {
       features: ["Invoice Processing", "Payment Management", "Collections", "Reconciliation"],
       color: "from-green-500 to-teal-500",
       bgColor: "from-green-500/10 to-teal-500/10",
-      borderColor: "border-green-500/30"
+      borderColor: "border-green-500/30",
+      category: "Accounting",
+      route: "/services/accounts"
     },
     {
       icon: Store,
@@ -72,7 +80,9 @@ const ServicesSection = () => {
       features: ["Cost Analysis", "Inventory Management", "POS Integration", "Financial Reporting"],
       color: "from-orange-500 to-red-500",
       bgColor: "from-orange-500/10 to-red-500/10",
-      borderColor: "border-orange-500/30"
+      borderColor: "border-orange-500/30",
+      category: "Accounting",
+      route: "/services/restaurant"
     },
     {
       icon: Calendar,
@@ -81,7 +91,9 @@ const ServicesSection = () => {
       features: ["Monthly Reporting", "Year-End Closing", "Financial Analysis", "Compliance"],
       color: "from-indigo-500 to-purple-500",
       bgColor: "from-indigo-500/10 to-purple-500/10",
-      borderColor: "border-indigo-500/30"
+      borderColor: "border-indigo-500/30",
+      category: "Accounting",
+      route: "/services/monthly"
     },
     {
       icon: Users,
@@ -90,7 +102,9 @@ const ServicesSection = () => {
       features: ["Payroll Processing", "Tax Filing", "Benefits Management", "Compliance"],
       color: "from-red-500 to-pink-500",
       bgColor: "from-red-500/10 to-pink-500/10",
-      borderColor: "border-red-500/30"
+      borderColor: "border-red-500/30",
+      category: "Accounting",
+      route: "/services/payroll"
     },
     {
       icon: BookOpen,
@@ -99,7 +113,9 @@ const ServicesSection = () => {
       features: ["Data Cleanup", "Record Organization", "Error Correction", "Reconciliation"],
       color: "from-yellow-500 to-orange-500",
       bgColor: "from-yellow-500/10 to-orange-500/10",
-      borderColor: "border-yellow-500/30"
+      borderColor: "border-yellow-500/30",
+      category: "Accounting",
+      route: "/services/book-cleanup"
     },
     {
       icon: Database,
@@ -108,7 +124,9 @@ const ServicesSection = () => {
       features: ["System Migration", "Data Conversion", "Quality Assurance", "Legacy Support"],
       color: "from-cyan-500 to-blue-500",
       bgColor: "from-cyan-500/10 to-blue-500/10",
-      borderColor: "border-cyan-500/30"
+      borderColor: "border-cyan-500/30",
+      category: "Advisory",
+      route: "/services/data-migration"
     },
     {
       icon: PieChart,
@@ -117,7 +135,9 @@ const ServicesSection = () => {
       features: ["Financial Planning", "Cash Flow Analysis", "Forecasting", "Risk Assessment"],
       color: "from-emerald-500 to-green-500",
       bgColor: "from-emerald-500/10 to-green-500/10",
-      borderColor: "border-emerald-500/30"
+      borderColor: "border-emerald-500/30",
+      category: "Advisory",
+      route: "/services/budgeting"
     },
     {
       icon: BarChart4,
@@ -126,13 +146,19 @@ const ServicesSection = () => {
       features: ["Strategic Planning", "Financial Analysis", "Risk Management", "Growth Advisory"],
       color: "from-violet-500 to-purple-500",
       bgColor: "from-violet-500/10 to-purple-500/10",
-      borderColor: "border-violet-500/30"
+      borderColor: "border-violet-500/30",
+      category: "Advisory",
+      route: "/services/cfo"
     }
   ];
 
   const categories = ["All Services", "Accounting", "Tax", "Advisory"];
 
-  // Rest of the component remains the same, just using the new services data
+  // Filter services based on active tab
+  const filteredServices = activeTab === 0 
+    ? services 
+    : services.filter(service => service.category === categories[activeTab]);
+
   return (
     <section 
       id="services-section"
@@ -199,7 +225,7 @@ const ServicesSection = () => {
         <div className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 transform transition-all duration-1000 delay-500 ${
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
         }`}>
-          {services.map((service, index) => {
+          {filteredServices.map((service, index) => {
             const Icon = service.icon;
             const isHovered = hoveredService === index;
             
@@ -251,11 +277,14 @@ const ServicesSection = () => {
                     </div>
 
                     {/* CTA Button */}
-                    <button className={`w-full flex items-center justify-center px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
-                      isHovered 
-                        ? `bg-gradient-to-r ${service.color} text-white shadow-lg` 
-                        : 'bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white'
-                    }`}>
+                    <button 
+                      onClick={() => navigate(service.route)}
+                      className={`w-full flex items-center justify-center px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
+                        isHovered 
+                          ? `bg-gradient-to-r ${service.color} text-white shadow-lg` 
+                          : 'bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white'
+                      }`}
+                    >
                       More Details
                       <ArrowRight size={16} className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
                     </button>
@@ -284,16 +313,22 @@ const ServicesSection = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-blue-500/25 group">
-              <span className="flex items-center justify-center">
+            <Link to="/contact" className="inline-block">
+              <button 
+                className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-blue-500/25 group flex items-center justify-center"
+              >
                 Get Started Today
                 <ArrowRight size={20} className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
-              </span>
-            </button>
+              </button>
+            </Link>
             
-            <button className="px-8 py-4 bg-transparent border border-white/20 text-white font-semibold rounded-xl hover:bg-white/5 hover:border-white/40 transition-all duration-300">
-              Schedule Consultation
-            </button>
+            <Link to="/contact" className="inline-block">
+              <button 
+                className="px-8 py-4 bg-transparent border border-white/20 text-white font-semibold rounded-xl hover:bg-white/5 hover:border-white/40 transition-all duration-300"
+              >
+                Schedule Consultation
+              </button>
+            </Link>
           </div>
         </div>
       </div>

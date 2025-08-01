@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, User, MessageSquare, Building, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const ContactSection = () => {
+  const navigate=useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -123,7 +126,10 @@ const ContactSection = () => {
                 Ready to Build Your Virtual Team?
               </h3>
               <p className="text-xl text-cyan-300 mb-6">That's Great!</p>
-              <button className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold rounded-xl hover:from-cyan-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-500/25 flex items-center">
+              <button 
+                onClick={() => navigate('/request-a-staff')}
+                className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold rounded-xl hover:from-cyan-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-500/25 flex items-center"
+              >
                 <Building className="w-5 h-5 mr-2" />
                 Request a Staff
               </button>

@@ -2,9 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <!-- Favicon links for different sizes with styling to match header logo -->
+    <link rel="icon" type="image/png" href="/src/assets/logo.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/src/assets/logo.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/src/assets/logo.png" sizes="180x180" />
+    <link rel="icon" type="image/png" href="/src/assets/logo.png" sizes="192x192" />
+    
+    <!-- Custom favicon styling to match header logo design -->
+    <style>
+      /* This creates a similar glow effect as in the header logo */
+      link[rel="icon"], link[rel="apple-touch-icon"] {
+        filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.3));
+      }
+    </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <title>Symbiosis - Professional Accounting Services</title>
   </head>
   <body>
     <div id="root"></div>
