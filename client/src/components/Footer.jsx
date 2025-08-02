@@ -1,6 +1,9 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 function Footer() {
+  const navigate = useNavigate();
+
   return (
     <footer className="bg-gray-900 text-gray-300 py-12">
       <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 animate-fadeIn">
@@ -10,20 +13,20 @@ function Footer() {
           <p className="mb-4">
             We at Symbiosis Infinity Solutions LLP are passionate about identifying and providing the best staffing solutions to our customers.
           </p>
-          <a href="#readmore" className="text-blue-400 hover:text-blue-300 transition duration-300">
+          <Link to="/about" className="text-white hover:text-gray-300 transition duration-300">
             Read More &raquo;
-          </a>
+          </Link>
         </div>
 
         {/* Quick Navigation 1 */}
         <div>
           <h3 className="text-lg font-semibold text-white mb-4 border-b-2 border-blue-500 w-fit">Quick Navigation</h3>
           <ul className="space-y-2">
-            <li><a href="#home" className="hover:text-blue-400 transition">Home</a></li>
-            <li><a href="#about" className="hover:text-blue-400 transition">About Us</a></li>
-            <li><a href="#team" className="hover:text-blue-400 transition">Our Team</a></li>
-            <li><a href="#services" className="hover:text-blue-400 transition">Our Services</a></li>
-            <li><a href="#testimonials" className="hover:text-blue-400 transition">Testimonials</a></li>
+            <li><Link to="/" className="text-white hover:text-gray-300 transition">Home</Link></li>
+            <li><Link to="/about" className="text-white hover:text-gray-300 transition">About Us</Link></li>
+            <li><Link to="/our-team" className="text-white hover:text-gray-300 transition">Our Team</Link></li>
+            <li><Link to="/services" className="text-white hover:text-gray-300 transition">Our Services</Link></li>
+            <li><Link to="/testimonials" className="text-white hover:text-gray-300 transition">Testimonials</Link></li>
           </ul>
         </div>
 
@@ -31,11 +34,11 @@ function Footer() {
         <div>
           <h3 className="text-lg font-semibold text-white mb-4 border-b-2 border-blue-500 w-fit">Quick Navigation</h3>
           <ul className="space-y-2">
-            <li><a href="#virtual-staffing" className="hover:text-blue-400 transition">Virtual Staffing</a></li>
-            <li><a href="#engagement" className="hover:text-blue-400 transition">Engagement Model</a></li>
-            <li><a href="#request" className="hover:text-blue-400 transition">Request a Staff</a></li>
-            <li><a href="#faqs" className="hover:text-blue-400 transition">FAQs</a></li>
-            <li><a href="#contact" className="hover:text-blue-400 transition">Contact</a></li>
+            <li><Link to="/virtual-staffing" className="text-white hover:text-gray-300 transition">Virtual Staffing</Link></li>
+            <li><Link to="/engagement" className="text-white hover:text-gray-300 transition">Engagement Model</Link></li>
+            <li><Link to="/request" className="text-white hover:text-gray-300 transition">Request a Staff</Link></li>
+            <li><Link to="/faqs" className="text-white hover:text-gray-300 transition">FAQs</Link></li>
+            <li><Link to="/contact" className="text-white hover:text-gray-300 transition">Contact</Link></li>
           </ul>
         </div>
 
