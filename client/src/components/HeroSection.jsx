@@ -67,7 +67,7 @@ const HeroSection = () => {
               className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/25 min-w-[200px]"
             >
               <span className="flex items-center justify-center space-x-2">
-                <span>Our Services</span>
+                <span className="hover:text-white transition-colors duration-300">Our Services</span>
                 <ArrowRight size={20} className="transform group-hover:translate-x-1 transition-transform duration-300" />
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-700 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

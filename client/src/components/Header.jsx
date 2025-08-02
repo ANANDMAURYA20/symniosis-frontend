@@ -114,19 +114,19 @@ const Header = () => {
       </div>
 
       {/* Top Info Bar - Hidden on mobile */}
-      <div className="relative z-20 hidden lg:flex justify-between items-center px-6 py-3 bg-black/40 backdrop-blur-sm border-b border-white/10">
+      <div className="relative z-20 hidden lg:flex justify-between items-center px-6 py-2 bg-black/40 backdrop-blur-sm border-b border-white/10">
         <div className="flex items-center space-x-6 text-gray-300">
           <div className="flex items-center space-x-2 hover:text-white transition-colors duration-300 cursor-pointer">
-            <Mail size={16} className="text-cyan-400" />
-            <span className="text-sm">info@symbiosisllp.com</span>
+            <Mail size={14} className="text-cyan-400" />
+            <span className="text-xs">info@symbiosisllp.com</span>
           </div>
           <div className="flex items-center space-x-2 hover:text-white transition-colors duration-300 cursor-pointer">
-            <Phone size={16} className="text-green-400" />
-            <span className="text-sm">+1 (929) 214-4491</span>
+            <Phone size={14} className="text-green-400" />
+            <span className="text-xs">+1 (929) 214-4491</span>
           </div>
           <div className="flex items-center space-x-2 hover:text-white transition-colors duration-300 cursor-pointer">
-            <Phone size={16} className="text-green-400" />
-            <span className="text-sm">+1 (925) 222-5218</span>
+            <Phone size={14} className="text-green-400" />
+            <span className="text-xs">+1 (925) 222-5218</span>
           </div>
         </div>
 
@@ -134,50 +134,50 @@ const Header = () => {
           <div className="flex items-center space-x-4">
             <button
               onClick={() => handleNavClick('/paypal')}
-              className="text-gray-300 hover:text-cyan-400 transition-colors duration-300 text-sm font-medium"
+              className="text-gray-300 hover:text-cyan-400 transition-colors duration-300 text-xs font-medium"
             >
               PayPal
             </button>
             <button
               onClick={() => handleNavClick('/veem')}
-              className="text-gray-300 hover:text-cyan-400 transition-colors duration-300 text-sm font-medium"
+              className="text-gray-300 hover:text-cyan-400 transition-colors duration-300 text-xs font-medium"
             >
               Veem
             </button>
           </div>
 
-          <div className="w-px h-6 bg-white/20"></div>
+          <div className="w-px h-4 bg-white/20"></div>
 
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-2">
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"
               className="text-gray-400 hover:text-blue-400 transition-all duration-300 transform hover:scale-110">
-              <Facebook size={18} />
+              <Facebook size={16} />
             </a>
             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
               className="text-gray-400 hover:text-sky-400 transition-all duration-300 transform hover:scale-110">
-              <Twitter size={18} />
+              <Twitter size={16} />
             </a>
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
               className="text-gray-400 hover:text-blue-500 transition-all duration-300 transform hover:scale-110">
-              <Linkedin size={18} />
+              <Linkedin size={16} />
             </a>
           </div>
         </div>
       </div>
 
       {/* Main Navigation */}
-      <div className="relative z-20 flex justify-between items-center px-4 lg:px-6 py-4">
+      <div className="relative z-20 flex justify-between items-center px-4 lg:px-6 py-3">
         {/* Logo */}
         <Link
           to="/"
           className="flex items-center group cursor-pointer"
         >
-          <div className="w-16 h-12 lg:w-24 lg:h-16 rounded-lg flex items-center justify-center group-hover:scale-105 transition-all duration-500 relative overflow-hidden">
+          <div className="w-12 h-10 lg:w-16 lg:h-12 rounded-lg flex items-center justify-center group-hover:scale-105 transition-all duration-500 relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 animate-pulse"></div>
             <img
               src={photo}
               alt="Symbiosis Logo"
-              className="w-full h-full object-contain p-1 lg:p-2 transform hover:rotate-3 transition-transform duration-300 relative z-10"
+              className="w-full h-full object-contain p-1 transform hover:rotate-3 transition-transform duration-300 relative z-10"
               style={{
                 filter: 'drop-shadow(0 0 8px rgba(6, 182, 212, 0.3))'
               }}
@@ -186,9 +186,9 @@ const Header = () => {
           </div>
         </Link>
 
-        {/* Desktop Navigation - Centered */}
-        <nav className="hidden lg:block relative flex-1 flex justify-center ml-8">
-          <ul className="flex items-center space-x-8">
+        {/* Desktop Navigation - Slightly Right Aligned */}
+        <nav className="hidden lg:block relative flex-1 flex justify-center ml-16">
+          <ul className="flex items-center space-x-6">
             {navigationItems.map((item, index) => (
               <li key={item.name} className="relative group">
                 <div className="flex items-center space-x-1">
@@ -201,7 +201,7 @@ const Header = () => {
                   {item.name !== "Home" && (
                     <div className="text-white hover:text-cyan-400 transition-all duration-300 p-1 rounded-full hover:bg-white/10">
                       <ChevronDown
-                        size={16}
+                        size={14}
                         className="transform transition-transform duration-300 group-hover:rotate-180"
                       />
                     </div>
@@ -211,64 +211,51 @@ const Header = () => {
                 {/* Hover underline effect */}
                 <span className="absolute left-0 -bottom-1 w-full h-0.5 bg-gradient-to-r from-cyan-400 to-purple-400 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
 
-                {/* Enhanced Hover Dropdown Menu */}
+                {/* Improved Dropdown Menu - Properly Sized */}
                 {item.name !== "Home" && (
                   <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100 z-[9999]">
-                    {/* Dropdown Container with Glass Effect */}
                     <div className="relative">
                       {/* Glowing Border */}
-                      <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/50 via-purple-500/50 to-cyan-500/50 rounded-2xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500/50 via-purple-500/50 to-cyan-500/50 rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                       
-                      {/* Main Dropdown Content */}
-                      <div className="relative bg-gray-900 border border-white/20 rounded-2xl shadow-2xl p-3 overflow-hidden min-w-[280px]">
-                        {/* Animated Background Pattern */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      {/* Main Dropdown Content - Compact Size */}
+                      <div className="relative bg-slate-900 border border-cyan-400/50 rounded-lg shadow-2xl p-3 overflow-hidden min-w-[240px] max-w-[280px]">
                         
-                        {/* Dropdown Header */}
-                        <div className="relative z-10 mb-3 pb-3 border-b border-white/10">
+                        {/* Solid Background */}
+                        <div className="absolute inset-0 bg-slate-900 rounded-lg"></div>
+                        
+                        {/* Dropdown Header - Compact */}
+                        <div className="relative z-20 mb-3 pb-2 border-b border-cyan-400/30">
                           <div className="flex items-center space-x-2">
-                            <Sparkles size={16} className="text-cyan-400" />
+                            <Sparkles size={14} className="text-cyan-400" />
                             <h3 className="text-white font-semibold text-sm">{item.name}</h3>
                           </div>
                         </div>
 
-                        {/* Dropdown Items with Scroll for Services */}
-                        <div className={`relative z-10 space-y-1 ${item.name === "Services" ? 'max-h-64 overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-gray-800/50 [&::-webkit-scrollbar-thumb]:bg-gray-600/80 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb:hover]:bg-gray-500/90' : ''}`}>
-                      {item.dropdown.map((dropdownItem, dropdownIndex) => (
-                        <Link
-                          key={dropdownIndex}
+                        {/* Dropdown Items - Compact */}
+                        <div className={`relative z-20 space-y-1 ${item.name === "Services" ? 'max-h-48 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-slate-800' : ''}`}>
+                          {item.dropdown.map((dropdownItem, dropdownIndex) => (
+                            <Link
+                              key={dropdownIndex}
                               to={dropdownItem.path}
-                              className="group/item relative w-full text-left block px-4 py-3 text-white hover:text-cyan-400 rounded-xl transition-all duration-300 text-sm overflow-hidden no-underline"
+                              className="group/item relative w-full text-left block px-3 py-2 text-white hover:text-cyan-300 rounded-md transition-all duration-200 text-sm no-underline hover:bg-slate-800/80"
                               style={{ textDecoration: 'none' }}
                             >
-                              {/* Hover Background Effect */}
-                              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 opacity-0 group-hover/item:opacity-100 transition-opacity duration-300 rounded-xl"></div>
-                              
                               {/* Item Content */}
                               <div className="relative z-10 flex items-center justify-between">
-                                <div className="flex items-center space-x-3">
-                                  <span className="text-lg">{dropdownItem.icon}</span>
-                                  <span className="font-medium text-white group-hover/item:text-cyan-400 font-semibold">{dropdownItem.name}</span>
+                                <div className="flex items-center space-x-2">
+                                  <span className="text-sm">{dropdownItem.icon}</span>
+                                  <span className="font-medium text-white group-hover/item:text-cyan-200">{dropdownItem.name}</span>
                                 </div>
                                 
                                 {/* Arrow Icon */}
                                 <ArrowRight 
-                                  size={16} 
-                                  className="text-white group-hover/item:text-cyan-400 transform group-hover/item:translate-x-1 transition-all duration-300" 
+                                  size={14} 
+                                  className="text-gray-400 group-hover/item:text-cyan-300 transform group-hover/item:translate-x-1 transition-all duration-200" 
                                 />
                               </div>
-
-                              {/* Animated Underline */}
-                              <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-cyan-400 to-purple-400 transform scale-x-0 group-hover/item:scale-x-100 origin-left transition-transform duration-300"></div>
-                        </Link>
-                      ))}
-                        </div>
-
-                        {/* Dropdown Footer */}
-                        <div className="relative z-10 mt-3 pt-3 border-t border-white/10">
-                          <div className="text-center">
-                            <span className="text-xs text-gray-400">Explore all options</span>
-                          </div>
+                            </Link>
+                          ))}
                         </div>
                       </div>
                     </div>
@@ -288,35 +275,39 @@ const Header = () => {
         </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Overlay - Overlapping Hero Section */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 z-[9999] bg-black/80">
-          <div className="absolute top-0 right-0 w-80 h-full bg-gray-900 border-l border-white/20 transform transition-transform duration-300 ease-in-out">
-            <div className="p-6">
+        <div className="lg:hidden fixed inset-0 z-[10000]">
+          <div className="absolute top-0 right-0 w-80 max-w-[90vw] h-screen bg-slate-900/95 backdrop-blur-md transform transition-transform duration-300 ease-in-out shadow-2xl border-l border-cyan-400/50">
+            
+            <div className="relative z-20 p-4 h-full overflow-y-auto">
               {/* Mobile Menu Header */}
-              <div className="flex justify-between items-center mb-8">
-                <h3 className="text-white text-xl font-bold">Menu</h3>
+              <div className="flex justify-between items-center mb-6 pb-3 border-b border-cyan-400/30">
+                <div className="flex items-center space-x-2">
+                  <Sparkles size={18} className="text-cyan-400" />
+                  <h3 className="text-white text-lg font-bold">Navigation</h3>
+                </div>
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-white p-2 rounded-lg hover:bg-white/10 transition-colors duration-300"
+                  className="text-white p-2 rounded-lg bg-slate-800 hover:bg-cyan-600 transition-colors duration-300"
                 >
-                  <X size={24} />
+                  <X size={20} />
                 </button>
               </div>
 
               {/* Mobile Navigation Items */}
-              <nav className="space-y-4">
+              <nav className="space-y-2">
                 {navigationItems.map((item, index) => (
-                  <div key={item.name} className="border-b border-white/10 pb-4">
+                  <div key={item.name} className="border-b border-slate-700/50 pb-2">
                     {item.dropdown ? (
                       <div>
                         <button
                           onClick={() => handleDropdownToggle(index)}
-                          className="flex items-center justify-between w-full text-white font-medium py-3 hover:text-cyan-400 transition-colors duration-300"
+                          className="flex items-center justify-between w-full text-white font-medium py-3 hover:text-cyan-300 transition-colors duration-300 px-3 rounded-lg hover:bg-slate-800"
                         >
-                          <span>{item.name}</span>
+                          <span className="text-sm">{item.name}</span>
                           <ChevronDown
-                            size={20}
+                            size={16}
                             className={`transform transition-transform duration-300 ${
                               activeDropdown === index ? 'rotate-180' : ''
                             }`}
@@ -327,15 +318,15 @@ const Header = () => {
                         <div className={`overflow-hidden transition-all duration-300 ${
                           activeDropdown === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                         }`}>
-                          <div className="pl-4 space-y-2 mt-2">
+                          <div className="pl-2 space-y-1 mt-2">
                             {item.dropdown.map((dropdownItem, dropdownIndex) => (
                               <Link
                                 key={dropdownIndex}
                                 to={dropdownItem.path}
-                                className="flex items-center space-x-3 text-white hover:text-cyan-400 transition-colors duration-300 py-2"
+                                className="flex items-center space-x-2 text-gray-300 hover:text-cyan-300 transition-colors duration-300 py-2 px-3 rounded-md hover:bg-slate-800 text-sm"
                                 onClick={() => setIsMobileMenuOpen(false)}
                               >
-                                <span className="text-lg">{dropdownItem.icon}</span>
+                                <span className="text-sm">{dropdownItem.icon}</span>
                                 <span>{dropdownItem.name}</span>
                               </Link>
                             ))}
@@ -345,19 +336,20 @@ const Header = () => {
                     ) : (
                       <Link
                         to={item.path}
-                        className="block text-white font-medium py-3 hover:text-cyan-400 transition-colors duration-300"
+                        className="block text-white font-medium py-3 hover:text-cyan-300 transition-colors duration-300 px-3 rounded-lg hover:bg-slate-800 text-sm"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
-                        {item.name}
+                        <span>{item.name}</span>
                       </Link>
                     )}
                   </div>
                 ))}
               </nav>
 
-              {/* Mobile Contact Info */}
-              <div className="mt-8 pt-6 border-t border-white/10">
-                <div className="space-y-3 text-sm text-gray-300">
+              {/* Mobile Contact Info - More Compact */}
+              <div className="mt-6 pt-4 border-t border-cyan-400/30 bg-slate-800/50 rounded-lg p-4">
+                <h4 className="text-white font-semibold mb-3 text-sm">Contact Info</h4>
+                <div className="space-y-2 text-sm text-gray-300">
                   <div className="flex items-center space-x-2">
                     <Mail size={16} className="text-cyan-400" />
                     <span>info@symbiosisllp.com</span>
@@ -373,18 +365,18 @@ const Header = () => {
                 </div>
 
                 {/* Mobile Social Links */}
-                <div className="flex items-center space-x-4 mt-6">
+                <div className="flex items-center justify-center space-x-4 mt-4 pt-3 border-t border-slate-600">
                   <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-blue-400 transition-all duration-300 transform hover:scale-110">
-                    <Facebook size={20} />
+                    className="text-gray-400 hover:text-blue-400 transition-all duration-300 transform hover:scale-110 p-2 rounded-full hover:bg-slate-700">
+                    <Facebook size={18} />
                   </a>
                   <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-sky-400 transition-all duration-300 transform hover:scale-110">
-                    <Twitter size={20} />
+                    className="text-gray-400 hover:text-sky-400 transition-all duration-300 transform hover:scale-110 p-2 rounded-full hover:bg-slate-700">
+                    <Twitter size={18} />
                   </a>
                   <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-blue-500 transition-all duration-300 transform hover:scale-110">
-                    <Linkedin size={20} />
+                    className="text-gray-400 hover:text-blue-500 transition-all duration-300 transform hover:scale-110 p-2 rounded-full hover:bg-slate-700">
+                    <Linkedin size={18} />
                   </a>
                 </div>
               </div>
