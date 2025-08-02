@@ -36,7 +36,7 @@ const Header = () => {
       dropdown: [
         { name: "About Us", path: "/about-us", icon: "👥" },
         { name: "Our Team", path: "/our-team", icon: "👨‍💼" },
-        { name: "Testimonials", path: "/testimonials", icon: "⭐" }
+        // { name: "Testimonials", path: "/testimonials", icon: "⭐" }
       ]
     },
     {

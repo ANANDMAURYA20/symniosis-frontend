@@ -194,12 +194,12 @@ const AboutSection = () => {
         <div className={`text-center mt-16 transform transition-all duration-1000 delay-1000 ${
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
         }`}>
-          <button className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-semibold rounded-xl hover:from-cyan-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-500/25 group">
+          {/* <button className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-semibold rounded-xl hover:from-cyan-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-500/25 group">
             <span className="flex items-center">
               Get Started Today
               <ArrowRight size={20} className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
             </span>
-          </button>
+          </button> */}
         </div>
       </div>
     </section>

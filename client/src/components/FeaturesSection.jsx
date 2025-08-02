@@ -169,7 +169,7 @@ const FeaturesSection = () => {
         </div>
 
         {/* Bottom CTA Section */}
-        <div className="text-center mt-20">
+        {/* <div className="text-center mt-20">
           <div className="backdrop-blur-xl bg-white/5 rounded-3xl p-12 border border-white/10 max-w-4xl mx-auto">
             <h3 className="text-3xl font-bold text-white mb-6">
               Ready to experience these features?
@@ -189,7 +189,7 @@ const FeaturesSection = () => {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* Bottom accent line */}
