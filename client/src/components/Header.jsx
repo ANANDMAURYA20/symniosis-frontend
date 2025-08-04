@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { ChevronDown, Mail, Phone, Facebook, Twitter, Linkedin, ArrowRight, Sparkles, Menu, X } from "lucide-react";
-import photo from "../assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import photo from "../assets/logo.png"
+
 const Header = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  // Mock navigation functions
-  const navigate = (path) => {
-    console.log(`Navigating to: ${path}`);
-    setActiveDropdown(null);
+  // Close mobile menu when route changes
+  useEffect(() => {
     setIsMobileMenuOpen(false);
-  };
+    setActiveDropdown(null);
+  }, [location.pathname]);
 
   // Handle scroll effect
   useEffect(() => {
@@ -34,6 +36,7 @@ const Header = () => {
       dropdown: [
         { name: "About Us", path: "/about-us", icon: "👥" },
         { name: "Our Team", path: "/our-team", icon: "👨‍💼" },
+        // { name: "Testimonials", path: "/testimonials", icon: "⭐" }
       ]
     },
     {
@@ -65,6 +68,7 @@ const Header = () => {
       path: "/faqs",
       dropdown: [
         { name: "General Questions", path: "/faqs/general", icon: "❓" },
+       
       ]
     },
     {
@@ -93,6 +97,23 @@ const Header = () => {
     setIsMobileMenuOpen(false);
   };
 
+  // PayPal SVG Icon Component
+  const PayPalIcon = ({ size = 20 }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944 2.39C5.026 1.83 5.516 1.4 6.084 1.4h7.56c1.917 0 3.569.106 4.781 1.194 1.24 1.12 1.39 2.785 1.39 4.244 0 3.654-1.093 6.248-4.916 7.214v.02c4.814.684 6.648 2.833 6.648 6.248 0 3.543-2.141 6.7-8.427 6.7H7.076z" fill="#0070ba"/>
+      <path d="M16.466 7.943c-.918 4.842-4.194 6.174-8.175 6.174h-1.918L5.084 21.4H2.47a.641.641 0 0 1-.633-.74L4.944 2.39c.082-.56.572-.99 1.14-.99h7.56c1.917 0 3.569.106 4.781 1.194.677.609 1.086 1.454 1.24 2.389z" fill="#003087"/>
+    </svg>
+  );
+
+  // Veem SVG Icon Component
+  const VeemIcon = ({ size = 20 }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="6" width="20" height="12" rx="3" fill="#00D4AA"/>
+      <path d="M8 10l2 4 2-4 2 4h2l-3-6h-2l-1 2-1-2h-2L8 14h2l-2-4z" fill="white"/>
+      <circle cx="18" cy="9" r="1" fill="white"/>
+    </svg>
+  );
+
   return (
     <header className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${
       isScrolled ? 'bg-gray-900/95 backdrop-blur-md shadow-lg' : 'bg-gradient-to-br from-slate-900/95 via-gray-900/95 to-black/95 backdrop-blur-sm'
@@ -114,15 +135,15 @@ const Header = () => {
         <div className="flex items-center space-x-6 text-gray-300">
           <div className="flex items-center space-x-2 hover:text-white transition-colors duration-300 cursor-pointer">
             <Mail size={14} className="text-cyan-400" />
-            <span className="text-xs text-white">info@symbiosisllp.com</span>
+            <span className="text-xs">info@symbiosisllp.com</span>
           </div>
           <div className="flex items-center space-x-2 hover:text-white transition-colors duration-300 cursor-pointer">
             <Phone size={14} className="text-green-400" />
-            <span className="text-xs text-white">+1 (929) 214-4491</span>
+            <span className="text-xs">+1 (929) 214-4491</span>
           </div>
           <div className="flex items-center space-x-2 hover:text-white transition-colors duration-300 cursor-pointer">
             <Phone size={14} className="text-green-400" />
-            <span className="text-xs text-white">+1 (925) 222-5218</span>
+            <span className="text-xs">+1 (925) 222-5218</span>
           </div>
         </div>
 
@@ -178,19 +199,20 @@ const Header = () => {
             </a>
           </div>
 
+
           <div className="w-px h-4 bg-white/20"></div>
 
           <div className="flex items-center space-x-2">
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"
-              className="text-gray-400 hover:text-blue-400 transition-all duration-300 transform hover:scale-110 p-2 rounded-full hover:bg-blue-400/10">
+              className="text-gray-400 hover:text-blue-400 transition-all duration-300 transform hover:scale-110">
               <Facebook size={16} />
             </a>
             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
-              className="text-gray-400 hover:text-sky-400 transition-all duration-300 transform hover:scale-110 p-2 rounded-full hover:bg-sky-400/10">
+              className="text-gray-400 hover:text-sky-400 transition-all duration-300 transform hover:scale-110">
               <Twitter size={16} />
             </a>
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
-              className="text-gray-400 hover:text-blue-500 transition-all duration-300 transform hover:scale-110 p-2 rounded-full hover:bg-blue-500/10">
+              className="text-gray-400 hover:text-blue-500 transition-all duration-300 transform hover:scale-110">
               <Linkedin size={16} />
             </a>
           </div>
@@ -267,10 +289,11 @@ const Header = () => {
                         {/* Dropdown Items - Compact */}
                         <div className={`relative z-20 space-y-1 ${item.name === "Services" ? 'max-h-48 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-slate-800' : ''}`}>
                           {item.dropdown.map((dropdownItem, dropdownIndex) => (
-                            <button
+                            <Link
                               key={dropdownIndex}
-                              onClick={() => navigate(dropdownItem.path)}
-                              className="group/item relative w-full text-left block px-3 py-2 text-white hover:text-cyan-300 rounded-md transition-all duration-200 text-sm hover:bg-slate-800/80"
+                              to={dropdownItem.path}
+                              className="group/item relative w-full text-left block px-3 py-2 text-white hover:text-cyan-300 rounded-md transition-all duration-200 text-sm no-underline hover:bg-slate-800/80"
+                              style={{ textDecoration: 'none' }}
                             >
                               {/* Item Content */}
                               <div className="relative z-10 flex items-center justify-between">
@@ -285,7 +308,7 @@ const Header = () => {
                                   className="text-gray-400 group-hover/item:text-cyan-300 transform group-hover/item:translate-x-1 transition-all duration-200" 
                                 />
                               </div>
-                            </button>
+                            </Link>
                           ))}
                         </div>
                       </div>
@@ -351,101 +374,75 @@ const Header = () => {
                         }`}>
                           <div className="pl-2 space-y-1 mt-2">
                             {item.dropdown.map((dropdownItem, dropdownIndex) => (
-                              <button
+                              <Link
                                 key={dropdownIndex}
-                                onClick={() => navigate(dropdownItem.path)}
-                                className="flex items-center space-x-2 text-gray-300 hover:text-cyan-300 transition-colors duration-300 py-2 px-3 rounded-md hover:bg-slate-800 text-sm w-full text-left"
+                                to={dropdownItem.path}
+                                className="flex items-center space-x-2 text-gray-300 hover:text-cyan-300 transition-colors duration-300 py-2 px-3 rounded-md hover:bg-slate-800 text-sm"
+                                onClick={() => setIsMobileMenuOpen(false)}
                               >
                                 <span className="text-sm">{dropdownItem.icon}</span>
                                 <span>{dropdownItem.name}</span>
-                              </button>
+                              </Link>
                             ))}
                           </div>
                         </div>
                       </div>
                     ) : (
-                      <button
-                        onClick={() => navigate(item.path)}
-                        className="block text-white font-medium py-3 hover:text-cyan-300 transition-colors duration-300 px-3 rounded-lg hover:bg-slate-800 text-sm w-full text-left"
+                      <Link
+                        to={item.path}
+                        className="block text-white font-medium py-3 hover:text-cyan-300 transition-colors duration-300 px-3 rounded-lg hover:bg-slate-800 text-sm"
+                        onClick={() => setIsMobileMenuOpen(false)}
                       >
                         <span>{item.name}</span>
-                      </button>
+                      </Link>
                     )}
                   </div>
                 ))}
               </nav>
 
-              {/* Enhanced Mobile Payment Links */}
+              {/* Mobile Payment Links */}
               <div className="mt-6 pt-4 border-t border-cyan-400/30 bg-slate-800/50 rounded-lg p-4">
-                <h4 className="text-white font-semibold mb-3 text-sm flex items-center space-x-2">
-                  <Sparkles size={16} className="text-cyan-400" />
-                  <span>Quick Payments</span>
-                </h4>
-                <div className="flex flex-col space-y-3">
+                <h4 className="text-white font-semibold mb-3 text-sm">Quick Payments</h4>
+                <div className="flex flex-col space-y-2">
                   <a
                     href="https://www.paypal.com/paypalme/Symbiosisllp"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative flex items-center space-x-3 text-white hover:text-blue-300 transition-all duration-300 transform hover:scale-105 px-4 py-3 rounded-lg bg-gradient-to-r from-blue-600/20 to-blue-500/20 hover:from-blue-500/30 hover:to-blue-400/30 border border-blue-400/30 hover:border-blue-300/50"
+                    className="group flex items-center space-x-3 text-white hover:text-blue-400 transition-all duration-300 transform hover:scale-105 px-3 py-2 rounded-lg hover:bg-blue-600/10 border border-transparent hover:border-blue-400/30"
                   >
-                    <img 
-                      src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png"
-                      alt="PayPal"
-                      className="w-6 h-6 object-contain filter brightness-0 invert group-hover:brightness-100 group-hover:invert-0 transition-all duration-300"
-                    />
-                    <span className="text-sm font-medium text-white flex-1">Pay via PayPal</span>
-                    <ArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform duration-200 text-blue-300" />
-                    
-                    {/* Glow effect */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-blue-400/20 rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+                    <PayPalIcon size={20} />
+                    <span className="text-sm font-medium">Pay via PayPal</span>
+                    <ArrowRight size={14} className="ml-auto transform group-hover:translate-x-1 transition-transform duration-200" />
                   </a>
                   
                   <a
                     href="https://apps.veem.com/CustomerApp/Pay/symbiosisinfinitysolutionsllp"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative flex items-center space-x-3 text-white hover:text-green-300 transition-all duration-300 transform hover:scale-105 px-4 py-3 rounded-lg bg-gradient-to-r from-green-600/20 to-green-500/20 hover:from-green-500/30 hover:to-green-400/30 border border-green-400/30 hover:border-green-300/50"
+                    className="group flex items-center space-x-3 text-white hover:text-green-400 transition-all duration-300 transform hover:scale-105 px-3 py-2 rounded-lg hover:bg-green-600/10 border border-transparent hover:border-green-400/30"
                   >
-                    <img 
-                      src="https://www.veem.com/static/media/veem-logo-white.svg"
-                      alt="Veem"
-                      className="w-6 h-6 object-contain transition-all duration-300 group-hover:brightness-110"
-                      onError={(e) => {
-                        e.target.style.display = 'none';
-                        e.target.nextSibling.style.display = 'flex';
-                      }}
-                    />
-                    {/* Fallback icon */}
-                    <div className="w-6 h-6 bg-green-400 rounded text-white text-sm flex items-center justify-center font-bold hidden">
-                      V
-                    </div>
-                    <span className="text-sm font-medium text-white flex-1">Pay via Veem</span>
-                    <ArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform duration-200 text-green-300" />
-                    
-                    {/* Glow effect */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 to-green-400/20 rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+                    <VeemIcon size={20} />
+                    <span className="text-sm font-medium">Pay via Veem</span>
+                    <ArrowRight size={14} className="ml-auto transform group-hover:translate-x-1 transition-transform duration-200" />
                   </a>
                 </div>
               </div>
 
               {/* Mobile Contact Info - More Compact */}
               <div className="mt-4 pt-4 border-t border-cyan-400/30 bg-slate-800/50 rounded-lg p-4">
-                <h4 className="text-white font-semibold mb-3 text-sm flex items-center space-x-2">
-                  <Phone size={16} className="text-cyan-400" />
-                  <span>Contact Info</span>
-                </h4>
+                <h4 className="text-white font-semibold mb-3 text-sm">Contact Info</h4>
                 <div className="space-y-2 text-sm text-gray-300">
                   <div className="flex items-center space-x-2">
                     <Mail size={16} className="text-cyan-400" />
-                    <span className="text-white">info@symbiosisllp.com</span>
+                    <span>info@symbiosisllp.com</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Phone size={16} className="text-green-400" />
-                    <span className="text-white">+1 (929) 214-4491</span>
+                    <span>+1 (929) 214-4491</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Phone size={16} className="text-green-400" />
-                    <span className="text-white">+1 (925) 222-5218</span>
+                    <span>+1 (925) 222-5218</span>
                   </div>
                 </div>
 
