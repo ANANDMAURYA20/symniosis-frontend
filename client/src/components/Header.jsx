@@ -7,6 +7,7 @@ const Header = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [paypalImgError, setPaypalImgError] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -97,11 +98,17 @@ const Header = () => {
     setIsMobileMenuOpen(false);
   };
 
-  // PayPal SVG Icon Component
+  // PayPal SVG Icon Component (Colorful)
   const PayPalIcon = ({ size = 20 }) => (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944 2.39C5.026 1.83 5.516 1.4 6.084 1.4h7.56c1.917 0 3.569.106 4.781 1.194 1.24 1.12 1.39 2.785 1.39 4.244 0 3.654-1.093 6.248-4.916 7.214v.02c4.814.684 6.648 2.833 6.648 6.248 0 3.543-2.141 6.7-8.427 6.7H7.076z" fill="#0070ba"/>
-      <path d="M16.466 7.943c-.918 4.842-4.194 6.174-8.175 6.174h-1.918L5.084 21.4H2.47a.641.641 0 0 1-.633-.74L4.944 2.39c.082-.56.572-.99 1.14-.99h7.56c1.917 0 3.569.106 4.781 1.194.677.609 1.086 1.454 1.24 2.389z" fill="#003087"/>
+    <svg width={size} height={size} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* Colorful PayPal SVG */}
+      <g>
+        <path d="M8.5 28H3.5a1 1 0 0 1-.99-1.14l3.2-22A2 2 0 0 1 7.7 4h13.5c3.1 0 5.2.17 6.9 1.9C30.8 7.7 31 10.1 31 12.1c0 5.1-1.5 8.7-7 10.1v.03c6.8.96 9.4 4 9.4 8.7 0 4.9-3 9.3-11.9 9.3H8.5z" fill="#009cde"/>
+        <path d="M23.5 12.1c-1.3 6.7-6 8.6-11.7 8.6H8.5L9.7 28H3.5a1 1 0 0 1-.99-1.14l3.2-22A2 2 0 0 1 7.7 4h13.5c3.1 0 5.2.17 6.9 1.9.98.88 1.57 2.1 1.8 3.4z" fill="#003087"/>
+        <path d="M19.5 4c-2.2 0-4.1 1.8-4.1 4.1 0 2.2 1.8 4.1 4.1 4.1 2.2 0 4.1-1.8 4.1-4.1C23.6 5.8 21.7 4 19.5 4z" fill="#012169"/>
+        <path d="M19.5 5.5c1.5 0 2.6 1.2 2.6 2.6 0 1.5-1.2 2.6-2.6 2.6-1.5 0-2.6-1.2-2.6-2.6 0-1.5 1.2-2.6 2.6-2.6z" fill="#009cde"/>
+        <path d="M19.5 7.2c.5 0 .9.4.9.9 0 .5-.4.9-.9.9-.5 0-.9-.4-.9-.9 0-.5.4-.9.9-.9z" fill="#fff"/>
+      </g>
     </svg>
   );
 
@@ -131,7 +138,7 @@ const Header = () => {
       </div>
 
       {/* Top Info Bar - Hidden on mobile */}
-      <div className="relative z-20 hidden lg:flex justify-between items-center px-5 py-1.5 bg-black/40 backdrop-blur-sm border-b border-white/10">
+      <div className="relative z-20 hidden lg:flex justify-between items-center px-5 py-0.5 bg-black/40 backdrop-blur-sm border-b border-white/10">
         <div className="flex items-center space-x-5 text-gray-300">
           <div className="flex items-center space-x-2 hover:text-white transition-colors duration-300 cursor-pointer">
             <Mail size={14} className="text-cyan-400" />
@@ -154,14 +161,20 @@ const Header = () => {
               href="https://www.paypal.com/paypalme/Symbiosisllp"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative flex items-center space-x-2 text-white hover:text-blue-300 transition-all duration-300 transform hover:scale-105 px-3 py-1.5 rounded-lg bg-gradient-to-r from-blue-600/20 to-blue-500/20 hover:from-blue-500/30 hover:to-blue-400/30 border border-blue-400/30 hover:border-blue-300/50 shadow-lg hover:shadow-blue-500/25"
+              className="group relative flex items-center space-x-2 text-white hover:text-blue-300 transition-all duration-300 transform hover:scale-105 px-2 py-0.5 rounded-lg bg-gradient-to-r from-blue-600/20 to-blue-500/20 hover:from-blue-500/30 hover:to-blue-400/30 border border-blue-400/30 hover:border-blue-300/50 shadow-lg hover:shadow-blue-500/25"
             >
-              {/* PayPal Logo */}
-              <img 
-                src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png"
-                alt="PayPal"
-                className="w-5 h-5 object-contain filter brightness-0 invert group-hover:brightness-100 group-hover:invert-0 transition-all duration-300"
-              />
+              {/* PayPal Logo - Always Colorful */}
+              {!paypalImgError ? (
+                <img 
+                  src="https://www.paypalobjects.com/webstatic/icon/pp258.png"
+                  alt="PayPal"
+                  className="w-5 h-5 object-contain transition-all duration-300"
+                  style={{ filter: "none" }}
+                  onError={() => setPaypalImgError(true)}
+                />
+              ) : (
+                <PayPalIcon size={20} />
+              )}
               <span className="text-sm font-medium text-white">PayPal</span>
               <ArrowRight size={12} className="transform group-hover:translate-x-1 transition-transform duration-200 text-blue-300" />
               
@@ -174,7 +187,7 @@ const Header = () => {
               href="https://apps.veem.com/CustomerApp/Pay/symbiosisinfinitysolutionsllp"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative flex items-center space-x-2 text-white hover:text-green-300 transition-all duration-300 transform hover:scale-105 px-3 py-1.5 rounded-lg bg-gradient-to-r from-green-600/20 to-green-500/20 hover:from-green-500/30 hover:to-green-400/30 border border-green-400/30 hover:border-green-300/50 shadow-lg hover:shadow-green-500/25"
+              className="group relative flex items-center space-x-2 text-white hover:text-green-300 transition-all duration-300 transform hover:scale-105 px-2 py-0.5 rounded-lg bg-gradient-to-r from-green-600/20 to-green-500/20 hover:from-green-500/30 hover:to-green-400/30 border border-green-400/30 hover:border-green-300/50 shadow-lg hover:shadow-green-500/25"
             >
               {/* Veem Logo */}
               <img 
@@ -220,7 +233,7 @@ const Header = () => {
       </div>
 
       {/* Main Navigation */}
-      <div className="relative z-20 flex justify-between items-center px-3 lg:px-5 py-2">
+      <div className="relative z-20 flex justify-between items-center px-3 lg:px-5 py-1">
         {/* Logo */}
         <Link
           to="/"
@@ -265,46 +278,46 @@ const Header = () => {
                 {/* Hover underline effect */}
                 <span className="absolute left-0 -bottom-1 w-full h-0.5 bg-gradient-to-r from-cyan-400 to-purple-400 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
 
-                {/* Improved Dropdown Menu - Properly Sized */}
+                {/* Improved Dropdown Menu - Slightly Bigger */}
                 {item.name !== "Home" && (
                   <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100 z-[9999]">
                     <div className="relative">
                       {/* Glowing Border */}
                       <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500/50 via-purple-500/50 to-cyan-500/50 rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                       
-                      {/* Main Dropdown Content - Compact Size */}
-                      <div className="relative bg-slate-900 border border-cyan-400/50 rounded-lg shadow-2xl p-2.5 overflow-hidden min-w-[220px] max-w-[260px]">
+                      {/* Main Dropdown Content - Slightly Bigger */}
+                      <div className="relative bg-slate-900 border border-cyan-400/50 rounded-lg shadow-2xl p-4 overflow-hidden min-w-[250px] max-w-[300px]">
                         
                         {/* Solid Background */}
                         <div className="absolute inset-0 bg-slate-900 rounded-lg"></div>
                         
-                        {/* Dropdown Header - Compact */}
-                        <div className="relative z-20 mb-2 pb-1 border-b border-cyan-400/30">
+                        {/* Dropdown Header - Slightly Bigger */}
+                        <div className="relative z-20 mb-3 pb-1 border-b border-cyan-400/30">
                           <div className="flex items-center space-x-2">
-                            <Sparkles size={14} className="text-cyan-400" />
-                            <h3 className="text-white font-semibold text-xs">{item.name}</h3>
+                            <Sparkles size={16} className="text-cyan-400" />
+                            <h3 className="text-white font-semibold text-sm">{item.name}</h3>
                           </div>
                         </div>
 
-                        {/* Dropdown Items - Compact */}
-                        <div className={`relative z-20 space-y-1 ${item.name === "Services" ? 'max-h-40 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-slate-800' : ''}`}>
+                        {/* Dropdown Items - Slightly Bigger */}
+                        <div className={`relative z-20 space-y-2 ${item.name === "Services" ? 'max-h-56 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-slate-800' : ''}`}>
                           {item.dropdown.map((dropdownItem, dropdownIndex) => (
                             <Link
                               key={dropdownIndex}
                               to={dropdownItem.path}
-                              className="group/item relative w-full text-left block px-2.5 py-1.5 text-white hover:text-cyan-300 rounded-md transition-all duration-200 text-xs no-underline hover:bg-slate-800/80"
+                              className="group/item relative w-full text-left block px-3 py-2 text-white hover:text-cyan-300 rounded-md transition-all duration-200 text-sm no-underline hover:bg-slate-800/80"
                               style={{ textDecoration: 'none' }}
                             >
                               {/* Item Content */}
                               <div className="relative z-10 flex items-center justify-between">
                                 <div className="flex items-center space-x-2">
-                                  <span className="text-xs">{dropdownItem.icon}</span>
+                                  <span className="text-base">{dropdownItem.icon}</span>
                                   <span className="font-medium text-white group-hover/item:text-cyan-200">{dropdownItem.name}</span>
                                 </div>
                                 
                                 {/* Arrow Icon */}
                                 <ArrowRight 
-                                  size={13} 
+                                  size={15} 
                                   className="text-gray-400 group-hover/item:text-cyan-300 transform group-hover/item:translate-x-1 transition-all duration-200" 
                                 />
                               </div>
