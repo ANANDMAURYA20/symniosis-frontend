@@ -4,7 +4,7 @@ import "./index.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HomeLayout } from './layouts/HomeLayout';
 import { RequestStaff } from './components/RequestStaff';
-import { ContactSection, OurTeam, AboutUs, HowItWorks } from './components/main';
+import { ContactSection, OurTeam, AboutUs, HowItWorks,TestimonialsSection,FAQSection } from './components/main';
 import { MainLayout } from './layouts/MainLayout';
 import ServicesSection from './components/ServicesSection';
 
@@ -34,6 +34,9 @@ function App() {
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/how-it-works" element={<HowItWorks />} />
             <Route path="/services" element={<ServicesSection />} />
+            <Route path="/testimonials" element={<TestimonialsSection />} />
+            <Route path="/faqs" element={<FAQSection />} />
+            <Route path="/faqs/general" element={<FAQSection />} />
             
             {/* Service Routes */}
             <Route path="/services/back-office" element={<BackOffice />} />

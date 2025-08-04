@@ -66,8 +66,8 @@ const LearnMore = () => {
             Connect with us today to explore how we can help you achieve your business goals with confidence.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in-delay-2">
-            <Link to="/contact" className="bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-cyan-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/25">
-              Contact Us <ArrowRight className="ml-2 w-5 h-5" />
+            <Link to="/contact" className="inline-flex items-center bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-cyan-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/25">
+              <span className="text-white">Contact Us</span> <ArrowRight className="ml-2 w-5 h-5 text-white" />
             </Link>
           </div>
         </div>
@@ -76,4 +76,4 @@ const LearnMore = () => {
   );
 };
 
-export default LearnMore; 
+export default LearnMore;

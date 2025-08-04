@@ -121,14 +121,14 @@ const BackOffice = () => {
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link 
               to="/contact"
-              className="bg-gradient-to-r from-blue-500 to-cyan-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-blue-600 hover:to-cyan-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/25 inline-flex items-center"
+              className="bg-gradient-to-r from-blue-500 to-cyan-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-blue-600 hover:to-cyan-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/25 inline-flex items-center text-white"
             >
               Get Started Today
               <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
             <Link 
               to="/contact"
-              className="border-2 border-blue-500 text-blue-400 px-8 py-4 rounded-xl font-semibold hover:bg-blue-500 hover:text-white transition-all duration-300 transform hover:scale-105 inline-flex items-center"
+              className="border-2 border-blue-500 text-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-500 hover:text-white transition-all duration-300 transform hover:scale-105 inline-flex items-center text-white"
             >
               Schedule a Consultation
               <ArrowRight className="ml-2 w-5 h-5" />

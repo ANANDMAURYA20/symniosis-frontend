@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { ChevronDown, Mail, Phone, Facebook, Twitter, Linkedin, ArrowRight, Sparkles, Menu, X } from "lucide-react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import photo from "../assets/logo.png"
-
+import photo from "../assets/logo.png";
+import { Link } from "react-router-dom";
 const Header = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const navigate = useNavigate();
-  const location = useLocation();
 
-  // Close mobile menu when route changes
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
+  // Mock navigation functions
+  const navigate = (path) => {
+    console.log(`Navigating to: ${path}`);
     setActiveDropdown(null);
-  }, [location.pathname]);
+    setIsMobileMenuOpen(false);
+  };
 
   // Handle scroll effect
   useEffect(() => {
@@ -36,7 +34,6 @@ const Header = () => {
       dropdown: [
         { name: "About Us", path: "/about-us", icon: "👥" },
         { name: "Our Team", path: "/our-team", icon: "👨‍💼" },
-        // { name: "Testimonials", path: "/testimonials", icon: "⭐" }
       ]
     },
     {
@@ -68,7 +65,6 @@ const Header = () => {
       path: "/faqs",
       dropdown: [
         { name: "General Questions", path: "/faqs/general", icon: "❓" },
-       
       ]
     },
     {
@@ -118,47 +114,83 @@ const Header = () => {
         <div className="flex items-center space-x-6 text-gray-300">
           <div className="flex items-center space-x-2 hover:text-white transition-colors duration-300 cursor-pointer">
             <Mail size={14} className="text-cyan-400" />
-            <span className="text-xs">info@symbiosisllp.com</span>
+            <span className="text-xs text-white">info@symbiosisllp.com</span>
           </div>
           <div className="flex items-center space-x-2 hover:text-white transition-colors duration-300 cursor-pointer">
             <Phone size={14} className="text-green-400" />
-            <span className="text-xs">+1 (929) 214-4491</span>
+            <span className="text-xs text-white">+1 (929) 214-4491</span>
           </div>
           <div className="flex items-center space-x-2 hover:text-white transition-colors duration-300 cursor-pointer">
             <Phone size={14} className="text-green-400" />
-            <span className="text-xs">+1 (925) 222-5218</span>
+            <span className="text-xs text-white">+1 (925) 222-5218</span>
           </div>
         </div>
 
         <div className="flex items-center space-x-6">
           <div className="flex items-center space-x-4">
-            <button
-              onClick={() => handleNavClick('/paypal')}
-              className="text-gray-300 hover:text-cyan-400 transition-colors duration-300 text-xs font-medium"
+            {/* Enhanced PayPal Link */}
+            <a
+              href="https://www.paypal.com/paypalme/Symbiosisllp"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative flex items-center space-x-3 text-white hover:text-blue-300 transition-all duration-300 transform hover:scale-105 px-4 py-2 rounded-lg bg-gradient-to-r from-blue-600/20 to-blue-500/20 hover:from-blue-500/30 hover:to-blue-400/30 border border-blue-400/30 hover:border-blue-300/50 shadow-lg hover:shadow-blue-500/25"
             >
-              PayPal
-            </button>
-            <button
-              onClick={() => handleNavClick('/veem')}
-              className="text-gray-300 hover:text-cyan-400 transition-colors duration-300 text-xs font-medium"
+              {/* PayPal Logo */}
+              <img 
+                src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png"
+                alt="PayPal"
+                className="w-5 h-5 object-contain filter brightness-0 invert group-hover:brightness-100 group-hover:invert-0 transition-all duration-300"
+              />
+              <span className="text-sm font-medium text-white">PayPal</span>
+              <ArrowRight size={12} className="transform group-hover:translate-x-1 transition-transform duration-200 text-blue-300" />
+              
+              {/* Glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-blue-400/20 rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+            </a>
+            
+            {/* Enhanced Veem Link */}
+            <a
+              href="https://apps.veem.com/CustomerApp/Pay/symbiosisinfinitysolutionsllp"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative flex items-center space-x-3 text-white hover:text-green-300 transition-all duration-300 transform hover:scale-105 px-4 py-2 rounded-lg bg-gradient-to-r from-green-600/20 to-green-500/20 hover:from-green-500/30 hover:to-green-400/30 border border-green-400/30 hover:border-green-300/50 shadow-lg hover:shadow-green-500/25"
             >
-              Veem
-            </button>
+              {/* Veem Logo */}
+              <img 
+                src="https://www.veem.com/static/media/veem-logo-white.svg"
+                alt="Veem"
+                className="w-5 h-5 object-contain transition-all duration-300 group-hover:brightness-110"
+                onError={(e) => {
+                  // Fallback if image doesn't load
+                  e.target.style.display = 'none';
+                  e.target.nextSibling.style.display = 'inline-block';
+                }}
+              />
+              {/* Fallback icon */}
+              <div className="w-5 h-5 bg-green-400 rounded text-white text-xs flex items-center justify-center font-bold hidden">
+                V
+              </div>
+              <span className="text-sm font-medium text-white">Veem</span>
+              <ArrowRight size={12} className="transform group-hover:translate-x-1 transition-transform duration-200 text-green-300" />
+              
+              {/* Glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 to-green-400/20 rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+            </a>
           </div>
 
           <div className="w-px h-4 bg-white/20"></div>
 
           <div className="flex items-center space-x-2">
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"
-              className="text-gray-400 hover:text-blue-400 transition-all duration-300 transform hover:scale-110">
+              className="text-gray-400 hover:text-blue-400 transition-all duration-300 transform hover:scale-110 p-2 rounded-full hover:bg-blue-400/10">
               <Facebook size={16} />
             </a>
             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
-              className="text-gray-400 hover:text-sky-400 transition-all duration-300 transform hover:scale-110">
+              className="text-gray-400 hover:text-sky-400 transition-all duration-300 transform hover:scale-110 p-2 rounded-full hover:bg-sky-400/10">
               <Twitter size={16} />
             </a>
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
-              className="text-gray-400 hover:text-blue-500 transition-all duration-300 transform hover:scale-110">
+              className="text-gray-400 hover:text-blue-500 transition-all duration-300 transform hover:scale-110 p-2 rounded-full hover:bg-blue-500/10">
               <Linkedin size={16} />
             </a>
           </div>
@@ -235,11 +267,10 @@ const Header = () => {
                         {/* Dropdown Items - Compact */}
                         <div className={`relative z-20 space-y-1 ${item.name === "Services" ? 'max-h-48 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-slate-800' : ''}`}>
                           {item.dropdown.map((dropdownItem, dropdownIndex) => (
-                            <Link
+                            <button
                               key={dropdownIndex}
-                              to={dropdownItem.path}
-                              className="group/item relative w-full text-left block px-3 py-2 text-white hover:text-cyan-300 rounded-md transition-all duration-200 text-sm no-underline hover:bg-slate-800/80"
-                              style={{ textDecoration: 'none' }}
+                              onClick={() => navigate(dropdownItem.path)}
+                              className="group/item relative w-full text-left block px-3 py-2 text-white hover:text-cyan-300 rounded-md transition-all duration-200 text-sm hover:bg-slate-800/80"
                             >
                               {/* Item Content */}
                               <div className="relative z-10 flex items-center justify-between">
@@ -254,7 +285,7 @@ const Header = () => {
                                   className="text-gray-400 group-hover/item:text-cyan-300 transform group-hover/item:translate-x-1 transition-all duration-200" 
                                 />
                               </div>
-                            </Link>
+                            </button>
                           ))}
                         </div>
                       </div>
@@ -320,47 +351,101 @@ const Header = () => {
                         }`}>
                           <div className="pl-2 space-y-1 mt-2">
                             {item.dropdown.map((dropdownItem, dropdownIndex) => (
-                              <Link
+                              <button
                                 key={dropdownIndex}
-                                to={dropdownItem.path}
-                                className="flex items-center space-x-2 text-gray-300 hover:text-cyan-300 transition-colors duration-300 py-2 px-3 rounded-md hover:bg-slate-800 text-sm"
-                                onClick={() => setIsMobileMenuOpen(false)}
+                                onClick={() => navigate(dropdownItem.path)}
+                                className="flex items-center space-x-2 text-gray-300 hover:text-cyan-300 transition-colors duration-300 py-2 px-3 rounded-md hover:bg-slate-800 text-sm w-full text-left"
                               >
                                 <span className="text-sm">{dropdownItem.icon}</span>
                                 <span>{dropdownItem.name}</span>
-                              </Link>
+                              </button>
                             ))}
                           </div>
                         </div>
                       </div>
                     ) : (
-                      <Link
-                        to={item.path}
-                        className="block text-white font-medium py-3 hover:text-cyan-300 transition-colors duration-300 px-3 rounded-lg hover:bg-slate-800 text-sm"
-                        onClick={() => setIsMobileMenuOpen(false)}
+                      <button
+                        onClick={() => navigate(item.path)}
+                        className="block text-white font-medium py-3 hover:text-cyan-300 transition-colors duration-300 px-3 rounded-lg hover:bg-slate-800 text-sm w-full text-left"
                       >
                         <span>{item.name}</span>
-                      </Link>
+                      </button>
                     )}
                   </div>
                 ))}
               </nav>
 
-              {/* Mobile Contact Info - More Compact */}
+              {/* Enhanced Mobile Payment Links */}
               <div className="mt-6 pt-4 border-t border-cyan-400/30 bg-slate-800/50 rounded-lg p-4">
-                <h4 className="text-white font-semibold mb-3 text-sm">Contact Info</h4>
+                <h4 className="text-white font-semibold mb-3 text-sm flex items-center space-x-2">
+                  <Sparkles size={16} className="text-cyan-400" />
+                  <span>Quick Payments</span>
+                </h4>
+                <div className="flex flex-col space-y-3">
+                  <a
+                    href="https://www.paypal.com/paypalme/Symbiosisllp"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative flex items-center space-x-3 text-white hover:text-blue-300 transition-all duration-300 transform hover:scale-105 px-4 py-3 rounded-lg bg-gradient-to-r from-blue-600/20 to-blue-500/20 hover:from-blue-500/30 hover:to-blue-400/30 border border-blue-400/30 hover:border-blue-300/50"
+                  >
+                    <img 
+                      src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png"
+                      alt="PayPal"
+                      className="w-6 h-6 object-contain filter brightness-0 invert group-hover:brightness-100 group-hover:invert-0 transition-all duration-300"
+                    />
+                    <span className="text-sm font-medium text-white flex-1">Pay via PayPal</span>
+                    <ArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform duration-200 text-blue-300" />
+                    
+                    {/* Glow effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-blue-400/20 rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+                  </a>
+                  
+                  <a
+                    href="https://apps.veem.com/CustomerApp/Pay/symbiosisinfinitysolutionsllp"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative flex items-center space-x-3 text-white hover:text-green-300 transition-all duration-300 transform hover:scale-105 px-4 py-3 rounded-lg bg-gradient-to-r from-green-600/20 to-green-500/20 hover:from-green-500/30 hover:to-green-400/30 border border-green-400/30 hover:border-green-300/50"
+                  >
+                    <img 
+                      src="https://www.veem.com/static/media/veem-logo-white.svg"
+                      alt="Veem"
+                      className="w-6 h-6 object-contain transition-all duration-300 group-hover:brightness-110"
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        e.target.nextSibling.style.display = 'flex';
+                      }}
+                    />
+                    {/* Fallback icon */}
+                    <div className="w-6 h-6 bg-green-400 rounded text-white text-sm flex items-center justify-center font-bold hidden">
+                      V
+                    </div>
+                    <span className="text-sm font-medium text-white flex-1">Pay via Veem</span>
+                    <ArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform duration-200 text-green-300" />
+                    
+                    {/* Glow effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 to-green-400/20 rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+                  </a>
+                </div>
+              </div>
+
+              {/* Mobile Contact Info - More Compact */}
+              <div className="mt-4 pt-4 border-t border-cyan-400/30 bg-slate-800/50 rounded-lg p-4">
+                <h4 className="text-white font-semibold mb-3 text-sm flex items-center space-x-2">
+                  <Phone size={16} className="text-cyan-400" />
+                  <span>Contact Info</span>
+                </h4>
                 <div className="space-y-2 text-sm text-gray-300">
                   <div className="flex items-center space-x-2">
                     <Mail size={16} className="text-cyan-400" />
-                    <span>info@symbiosisllp.com</span>
+                    <span className="text-white">info@symbiosisllp.com</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Phone size={16} className="text-green-400" />
-                    <span>+1 (929) 214-4491</span>
+                    <span className="text-white">+1 (929) 214-4491</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Phone size={16} className="text-green-400" />
-                    <span>+1 (925) 222-5218</span>
+                    <span className="text-white">+1 (925) 222-5218</span>
                   </div>
                 </div>
 

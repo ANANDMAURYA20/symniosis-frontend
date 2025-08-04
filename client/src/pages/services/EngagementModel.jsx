@@ -156,8 +156,8 @@ const EngagementModel = () => {
             That’s Great! Our expert team is ready to help you build the perfect virtual workforce for your accounting and tax needs. Let's start your journey towards business success.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in-delay-2">
-            <Link to="/request-a-staff" className="bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-cyan-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/25">
-              Request a Staff Now <ArrowRight className="ml-2 w-5 h-5" />
+            <Link to="/request-a-staff" className="bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-cyan-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/25 flex items-center">
+              <span className="text-white">Request a Staff Now</span> <ArrowRight className="ml-2 w-5 h-5 text-white" />
             </Link>
           </div>
         </div>
