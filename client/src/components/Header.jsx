@@ -131,8 +131,8 @@ const Header = () => {
       </div>
 
       {/* Top Info Bar - Hidden on mobile */}
-      <div className="relative z-20 hidden lg:flex justify-between items-center px-6 py-2 bg-black/40 backdrop-blur-sm border-b border-white/10">
-        <div className="flex items-center space-x-6 text-gray-300">
+      <div className="relative z-20 hidden lg:flex justify-between items-center px-5 py-1.5 bg-black/40 backdrop-blur-sm border-b border-white/10">
+        <div className="flex items-center space-x-5 text-gray-300">
           <div className="flex items-center space-x-2 hover:text-white transition-colors duration-300 cursor-pointer">
             <Mail size={14} className="text-cyan-400" />
             <span className="text-xs">info@symbiosisllp.com</span>
@@ -147,14 +147,14 @@ const Header = () => {
           </div>
         </div>
 
-        <div className="flex items-center space-x-6">
-          <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-5">
+          <div className="flex items-center space-x-3">
             {/* Enhanced PayPal Link */}
             <a
               href="https://www.paypal.com/paypalme/Symbiosisllp"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative flex items-center space-x-3 text-white hover:text-blue-300 transition-all duration-300 transform hover:scale-105 px-4 py-2 rounded-lg bg-gradient-to-r from-blue-600/20 to-blue-500/20 hover:from-blue-500/30 hover:to-blue-400/30 border border-blue-400/30 hover:border-blue-300/50 shadow-lg hover:shadow-blue-500/25"
+              className="group relative flex items-center space-x-2 text-white hover:text-blue-300 transition-all duration-300 transform hover:scale-105 px-3 py-1.5 rounded-lg bg-gradient-to-r from-blue-600/20 to-blue-500/20 hover:from-blue-500/30 hover:to-blue-400/30 border border-blue-400/30 hover:border-blue-300/50 shadow-lg hover:shadow-blue-500/25"
             >
               {/* PayPal Logo */}
               <img 
@@ -174,7 +174,7 @@ const Header = () => {
               href="https://apps.veem.com/CustomerApp/Pay/symbiosisinfinitysolutionsllp"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative flex items-center space-x-3 text-white hover:text-green-300 transition-all duration-300 transform hover:scale-105 px-4 py-2 rounded-lg bg-gradient-to-r from-green-600/20 to-green-500/20 hover:from-green-500/30 hover:to-green-400/30 border border-green-400/30 hover:border-green-300/50 shadow-lg hover:shadow-green-500/25"
+              className="group relative flex items-center space-x-2 text-white hover:text-green-300 transition-all duration-300 transform hover:scale-105 px-3 py-1.5 rounded-lg bg-gradient-to-r from-green-600/20 to-green-500/20 hover:from-green-500/30 hover:to-green-400/30 border border-green-400/30 hover:border-green-300/50 shadow-lg hover:shadow-green-500/25"
             >
               {/* Veem Logo */}
               <img 
@@ -220,13 +220,13 @@ const Header = () => {
       </div>
 
       {/* Main Navigation */}
-      <div className="relative z-20 flex justify-between items-center px-4 lg:px-6 py-3">
+      <div className="relative z-20 flex justify-between items-center px-3 lg:px-5 py-2">
         {/* Logo */}
         <Link
           to="/"
           className="flex items-center group cursor-pointer"
         >
-          <div className="w-12 h-10 lg:w-16 lg:h-12 rounded-lg flex items-center justify-center group-hover:scale-105 transition-all duration-500 relative overflow-hidden">
+          <div className="w-10 h-8 lg:w-14 lg:h-10 rounded-lg flex items-center justify-center group-hover:scale-105 transition-all duration-500 relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 animate-pulse"></div>
             <img
               src={photo}
@@ -241,19 +241,19 @@ const Header = () => {
         </Link>
 
         {/* Desktop Navigation - Slightly Right Aligned */}
-        <nav className="hidden lg:block relative flex-1 flex justify-center ml-16">
-          <ul className="flex items-center space-x-6">
+        <nav className="hidden lg:block relative flex-1 flex justify-center ml-12">
+          <ul className="flex items-center space-x-4">
             {navigationItems.map((item, index) => (
               <li key={item.name} className="relative group">
                 <div className="flex items-center space-x-1">
                   <button
-                    className="text-white font-medium text-sm tracking-wide hover:text-cyan-400 transition-colors duration-300"
+                    className="text-white font-medium text-sm tracking-wide hover:text-cyan-400 transition-colors duration-300 px-1 py-1"
                     onClick={() => item.name === "Home" ? navigate(item.path) : null}
                   >
                     {item.name}
                   </button>
                   {item.name !== "Home" && (
-                    <div className="text-white hover:text-cyan-400 transition-all duration-300 p-1 rounded-full hover:bg-white/10">
+                    <div className="text-white hover:text-cyan-400 transition-all duration-300 p-0.5 rounded-full hover:bg-white/10">
                       <ChevronDown
                         size={14}
                         className="transform transition-transform duration-300 group-hover:rotate-180"
@@ -273,38 +273,38 @@ const Header = () => {
                       <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500/50 via-purple-500/50 to-cyan-500/50 rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                       
                       {/* Main Dropdown Content - Compact Size */}
-                      <div className="relative bg-slate-900 border border-cyan-400/50 rounded-lg shadow-2xl p-3 overflow-hidden min-w-[240px] max-w-[280px]">
+                      <div className="relative bg-slate-900 border border-cyan-400/50 rounded-lg shadow-2xl p-2.5 overflow-hidden min-w-[220px] max-w-[260px]">
                         
                         {/* Solid Background */}
                         <div className="absolute inset-0 bg-slate-900 rounded-lg"></div>
                         
                         {/* Dropdown Header - Compact */}
-                        <div className="relative z-20 mb-3 pb-2 border-b border-cyan-400/30">
+                        <div className="relative z-20 mb-2 pb-1 border-b border-cyan-400/30">
                           <div className="flex items-center space-x-2">
                             <Sparkles size={14} className="text-cyan-400" />
-                            <h3 className="text-white font-semibold text-sm">{item.name}</h3>
+                            <h3 className="text-white font-semibold text-xs">{item.name}</h3>
                           </div>
                         </div>
 
                         {/* Dropdown Items - Compact */}
-                        <div className={`relative z-20 space-y-1 ${item.name === "Services" ? 'max-h-48 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-slate-800' : ''}`}>
+                        <div className={`relative z-20 space-y-1 ${item.name === "Services" ? 'max-h-40 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-slate-800' : ''}`}>
                           {item.dropdown.map((dropdownItem, dropdownIndex) => (
                             <Link
                               key={dropdownIndex}
                               to={dropdownItem.path}
-                              className="group/item relative w-full text-left block px-3 py-2 text-white hover:text-cyan-300 rounded-md transition-all duration-200 text-sm no-underline hover:bg-slate-800/80"
+                              className="group/item relative w-full text-left block px-2.5 py-1.5 text-white hover:text-cyan-300 rounded-md transition-all duration-200 text-xs no-underline hover:bg-slate-800/80"
                               style={{ textDecoration: 'none' }}
                             >
                               {/* Item Content */}
                               <div className="relative z-10 flex items-center justify-between">
                                 <div className="flex items-center space-x-2">
-                                  <span className="text-sm">{dropdownItem.icon}</span>
+                                  <span className="text-xs">{dropdownItem.icon}</span>
                                   <span className="font-medium text-white group-hover/item:text-cyan-200">{dropdownItem.name}</span>
                                 </div>
                                 
                                 {/* Arrow Icon */}
                                 <ArrowRight 
-                                  size={14} 
+                                  size={13} 
                                   className="text-gray-400 group-hover/item:text-cyan-300 transform group-hover/item:translate-x-1 transition-all duration-200" 
                                 />
                               </div>
@@ -323,45 +323,45 @@ const Header = () => {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="lg:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors duration-300"
+          className="lg:hidden text-white p-1.5 rounded-lg hover:bg-white/10 transition-colors duration-300"
         >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
       {/* Mobile Menu Overlay - Overlapping Hero Section */}
       {isMobileMenuOpen && (
         <div className="lg:hidden fixed inset-0 z-[10000]">
-          <div className="absolute top-0 right-0 w-80 max-w-[90vw] h-screen bg-slate-900/95 backdrop-blur-md transform transition-transform duration-300 ease-in-out shadow-2xl border-l border-cyan-400/50">
+          <div className="absolute top-0 right-0 w-72 max-w-[90vw] h-screen bg-slate-900/95 backdrop-blur-md transform transition-transform duration-300 ease-in-out shadow-2xl border-l border-cyan-400/50">
             
-            <div className="relative z-20 p-4 h-full overflow-y-auto">
+            <div className="relative z-20 p-3 h-full overflow-y-auto">
               {/* Mobile Menu Header */}
-              <div className="flex justify-between items-center mb-6 pb-3 border-b border-cyan-400/30">
+              <div className="flex justify-between items-center mb-4 pb-2 border-b border-cyan-400/30">
                 <div className="flex items-center space-x-2">
-                  <Sparkles size={18} className="text-cyan-400" />
-                  <h3 className="text-white text-lg font-bold">Navigation</h3>
+                  <Sparkles size={16} className="text-cyan-400" />
+                  <h3 className="text-white text-base font-bold">Navigation</h3>
                 </div>
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-white p-2 rounded-lg bg-slate-800 hover:bg-cyan-600 transition-colors duration-300"
+                  className="text-white p-1.5 rounded-lg bg-slate-800 hover:bg-cyan-600 transition-colors duration-300"
                 >
-                  <X size={20} />
+                  <X size={18} />
                 </button>
               </div>
 
               {/* Mobile Navigation Items */}
-              <nav className="space-y-2">
+              <nav className="space-y-1.5">
                 {navigationItems.map((item, index) => (
-                  <div key={item.name} className="border-b border-slate-700/50 pb-2">
+                  <div key={item.name} className="border-b border-slate-700/50 pb-1.5">
                     {item.dropdown ? (
                       <div>
                         <button
                           onClick={() => handleDropdownToggle(index)}
-                          className="flex items-center justify-between w-full text-white font-medium py-3 hover:text-cyan-300 transition-colors duration-300 px-3 rounded-lg hover:bg-slate-800"
+                          className="flex items-center justify-between w-full text-white font-medium py-2 hover:text-cyan-300 transition-colors duration-300 px-2.5 rounded-lg hover:bg-slate-800 text-sm"
                         >
-                          <span className="text-sm">{item.name}</span>
+                          <span className="text-xs">{item.name}</span>
                           <ChevronDown
-                            size={16}
+                            size={15}
                             className={`transform transition-transform duration-300 ${
                               activeDropdown === index ? 'rotate-180' : ''
                             }`}
@@ -370,17 +370,17 @@ const Header = () => {
                         
                         {/* Mobile Dropdown */}
                         <div className={`overflow-hidden transition-all duration-300 ${
-                          activeDropdown === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                          activeDropdown === index ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
                         }`}>
-                          <div className="pl-2 space-y-1 mt-2">
+                          <div className="pl-2 space-y-1 mt-1">
                             {item.dropdown.map((dropdownItem, dropdownIndex) => (
                               <Link
                                 key={dropdownIndex}
                                 to={dropdownItem.path}
-                                className="flex items-center space-x-2 text-gray-300 hover:text-cyan-300 transition-colors duration-300 py-2 px-3 rounded-md hover:bg-slate-800 text-sm"
+                                className="flex items-center space-x-2 text-gray-300 hover:text-cyan-300 transition-colors duration-300 py-1.5 px-2.5 rounded-md hover:bg-slate-800 text-xs"
                                 onClick={() => setIsMobileMenuOpen(false)}
                               >
-                                <span className="text-sm">{dropdownItem.icon}</span>
+                                <span className="text-xs">{dropdownItem.icon}</span>
                                 <span>{dropdownItem.name}</span>
                               </Link>
                             ))}
@@ -390,7 +390,7 @@ const Header = () => {
                     ) : (
                       <Link
                         to={item.path}
-                        className="block text-white font-medium py-3 hover:text-cyan-300 transition-colors duration-300 px-3 rounded-lg hover:bg-slate-800 text-sm"
+                        className="block text-white font-medium py-2 hover:text-cyan-300 transition-colors duration-300 px-2.5 rounded-lg hover:bg-slate-800 text-xs"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         <span>{item.name}</span>
@@ -401,64 +401,64 @@ const Header = () => {
               </nav>
 
               {/* Mobile Payment Links */}
-              <div className="mt-6 pt-4 border-t border-cyan-400/30 bg-slate-800/50 rounded-lg p-4">
-                <h4 className="text-white font-semibold mb-3 text-sm">Quick Payments</h4>
-                <div className="flex flex-col space-y-2">
+              <div className="mt-4 pt-3 border-t border-cyan-400/30 bg-slate-800/50 rounded-lg p-3">
+                <h4 className="text-white font-semibold mb-2 text-xs">Quick Payments</h4>
+                <div className="flex flex-col space-y-1.5">
                   <a
                     href="https://www.paypal.com/paypalme/Symbiosisllp"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center space-x-3 text-white hover:text-blue-400 transition-all duration-300 transform hover:scale-105 px-3 py-2 rounded-lg hover:bg-blue-600/10 border border-transparent hover:border-blue-400/30"
+                    className="group flex items-center space-x-2 text-white hover:text-blue-400 transition-all duration-300 transform hover:scale-105 px-2.5 py-1.5 rounded-lg hover:bg-blue-600/10 border border-transparent hover:border-blue-400/30"
                   >
-                    <PayPalIcon size={20} />
-                    <span className="text-sm font-medium">Pay via PayPal</span>
-                    <ArrowRight size={14} className="ml-auto transform group-hover:translate-x-1 transition-transform duration-200" />
+                    <PayPalIcon size={18} />
+                    <span className="text-xs font-medium">Pay via PayPal</span>
+                    <ArrowRight size={13} className="ml-auto transform group-hover:translate-x-1 transition-transform duration-200" />
                   </a>
                   
                   <a
                     href="https://apps.veem.com/CustomerApp/Pay/symbiosisinfinitysolutionsllp"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center space-x-3 text-white hover:text-green-400 transition-all duration-300 transform hover:scale-105 px-3 py-2 rounded-lg hover:bg-green-600/10 border border-transparent hover:border-green-400/30"
+                    className="group flex items-center space-x-2 text-white hover:text-green-400 transition-all duration-300 transform hover:scale-105 px-2.5 py-1.5 rounded-lg hover:bg-green-600/10 border border-transparent hover:border-green-400/30"
                   >
-                    <VeemIcon size={20} />
-                    <span className="text-sm font-medium">Pay via Veem</span>
-                    <ArrowRight size={14} className="ml-auto transform group-hover:translate-x-1 transition-transform duration-200" />
+                    <VeemIcon size={18} />
+                    <span className="text-xs font-medium">Pay via Veem</span>
+                    <ArrowRight size={13} className="ml-auto transform group-hover:translate-x-1 transition-transform duration-200" />
                   </a>
                 </div>
               </div>
 
               {/* Mobile Contact Info - More Compact */}
-              <div className="mt-4 pt-4 border-t border-cyan-400/30 bg-slate-800/50 rounded-lg p-4">
-                <h4 className="text-white font-semibold mb-3 text-sm">Contact Info</h4>
-                <div className="space-y-2 text-sm text-gray-300">
+              <div className="mt-3 pt-3 border-t border-cyan-400/30 bg-slate-800/50 rounded-lg p-3">
+                <h4 className="text-white font-semibold mb-2 text-xs">Contact Info</h4>
+                <div className="space-y-1 text-xs text-gray-300">
                   <div className="flex items-center space-x-2">
-                    <Mail size={16} className="text-cyan-400" />
+                    <Mail size={15} className="text-cyan-400" />
                     <span>info@symbiosisllp.com</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Phone size={16} className="text-green-400" />
+                    <Phone size={15} className="text-green-400" />
                     <span>+1 (929) 214-4491</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Phone size={16} className="text-green-400" />
+                    <Phone size={15} className="text-green-400" />
                     <span>+1 (925) 222-5218</span>
                   </div>
                 </div>
 
                 {/* Mobile Social Links */}
-                <div className="flex items-center justify-center space-x-4 mt-4 pt-3 border-t border-slate-600">
+                <div className="flex items-center justify-center space-x-3 mt-3 pt-2 border-t border-slate-600">
                   <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-blue-400 transition-all duration-300 transform hover:scale-110 p-2 rounded-full hover:bg-slate-700">
-                    <Facebook size={18} />
+                    className="text-gray-400 hover:text-blue-400 transition-all duration-300 transform hover:scale-110 p-1.5 rounded-full hover:bg-slate-700">
+                    <Facebook size={16} />
                   </a>
                   <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-sky-400 transition-all duration-300 transform hover:scale-110 p-2 rounded-full hover:bg-slate-700">
-                    <Twitter size={18} />
+                    className="text-gray-400 hover:text-sky-400 transition-all duration-300 transform hover:scale-110 p-1.5 rounded-full hover:bg-slate-700">
+                    <Twitter size={16} />
                   </a>
                   <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-blue-500 transition-all duration-300 transform hover:scale-110 p-2 rounded-full hover:bg-slate-700">
-                    <Linkedin size={18} />
+                    className="text-gray-400 hover:text-blue-500 transition-all duration-300 transform hover:scale-110 p-1.5 rounded-full hover:bg-slate-700">
+                    <Linkedin size={16} />
                   </a>
                 </div>
               </div>
