@@ -111,15 +111,15 @@ const CFO = () => {
               to="/contact"
               className="bg-gradient-to-r from-violet-500 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-violet-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-violet-500/25 inline-flex items-center"
             >
-              Get Started Today
-              <ArrowRight className="ml-2 w-5 h-5" />
+              <span style={{ color: 'white' }}>Get Started Today</span>
+              <ArrowRight className="ml-2 w-5 h-5" style={{ color: 'white' }} />
             </Link>
             <Link 
               to="/contact"
               className="border-2 border-violet-500 text-violet-400 px-8 py-4 rounded-xl font-semibold hover:bg-violet-500 hover:text-white transition-all duration-300 transform hover:scale-105 inline-flex items-center"
             >
-              Schedule a Consultation
-              <ArrowRight className="ml-2 w-5 h-5" />
+              <span style={{ color: 'white' }}>Schedule a Consultation</span>
+              <ArrowRight className="ml-2 w-5 h-5" style={{ color: 'white' }} />
             </Link>
           </div>
         </div>

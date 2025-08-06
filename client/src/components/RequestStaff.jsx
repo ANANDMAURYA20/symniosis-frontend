@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Users, Briefcase, Mail, Phone, User, FileText, Send, CheckCircle, ChevronDown } from 'lucide-react';
+import { apiService } from '../services/api';
 
  export const RequestStaff = () => {
   const [formData, setFormData] = useState({
@@ -58,72 +59,57 @@ import { Users, Briefcase, Mail, Phone, User, FileText, Send, CheckCircle, Chevr
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    
-    // Reset form after 4 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        jobFunction: '',
-        positionHiringFor: '',
-        positionType: '',
-        name: '',
-        email: '',
-        phone: '',
-        jobDescription: ''
-      });
-    }, 4000);
+    try {
+      const result = await apiService.submitRequestStaff(formData);
+      
+      setIsSubmitted(true);
+      console.log('✅ Staff request submitted successfully:', result);
+      
+      // Reset form after 4 seconds
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({
+          jobFunction: '',
+          positionHiringFor: '',
+          positionType: '',
+          name: '',
+          email: '',
+          phone: '',
+          jobDescription: ''
+        });
+      }, 4000);
+    } catch (error) {
+      console.error('❌ Form submission failed:', error);
+      alert(`Submission failed: ${error.message || 'Please try again later'}`);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  const CustomDropdown = ({ label, options, value, field, placeholder }) => (
-    <div className="relative group">
-      <label className="block text-sm font-semibold text-gray-300 mb-2 group-focus-within:text-cyan-400 transition-colors duration-300">
-        {label} *
-      </label>
-      <div className="relative">
-        <button
-          type="button"
-          onClick={() => setActiveDropdown(activeDropdown === field ? null : field)}
-          className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-xl text-left text-white hover:border-cyan-500 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 transition-all duration-300 flex items-center justify-between group-hover:shadow-md hover:bg-gray-700/70"
+  const CustomDropdown = ({ label, options, value, field, placeholder }) => {
+    return (
+      <div className="group">
+        <label className="block text-sm font-semibold text-gray-300 mb-2">
+          {label} *
+        </label>
+        <select
+          name={field}
+          value={value}
+          onChange={handleInputChange}
+          className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-xl text-white hover:border-cyan-500 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 transition-all duration-300 cursor-pointer"
         >
-          <span className={value ? 'text-white' : 'text-gray-400'}>
-            {value || placeholder}
-          </span>
-          <ChevronDown 
-            size={20} 
-            className={`text-gray-400 transition-transform duration-300 ${
-              activeDropdown === field ? 'rotate-180' : ''
-            }`} 
-          />
-        </button>
-        
-        {/* Dropdown Menu */}
-        <div className={`absolute top-full left-0 right-0 mt-2 bg-gray-800/95 backdrop-blur-md border border-white/10 rounded-xl shadow-2xl z-50 max-h-60 overflow-y-auto transition-all duration-300 ${
-          activeDropdown === field 
-            ? 'opacity-100 translate-y-0 visible' 
-            : 'opacity-0 -translate-y-2 invisible'
-        }`}>
+          <option value="" className="bg-gray-800 text-gray-400">
+            {placeholder}
+          </option>
           {options.map((option, index) => (
-            <button
-              key={index}
-              type="button"
-              onClick={() => handleDropdownSelect(field, option)}
-              className="w-full text-left px-4 py-3 text-white hover:bg-gray-700/70 hover:text-cyan-400 transition-all duration-200 first:rounded-t-xl last:rounded-b-xl group/item"
-            >
-              <span className="flex items-center">
-                <span className="w-2 h-2 bg-cyan-400 rounded-full opacity-0 group-hover/item:opacity-100 transition-opacity duration-200 mr-3"></span>
-                {option}
-              </span>
-            </button>
+            <option key={index} value={option} className="bg-gray-800 text-white">
+              {option}
+            </option>
           ))}
-        </div>
+        </select>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-black relative overflow-hidden">

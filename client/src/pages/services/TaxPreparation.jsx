@@ -1,6 +1,5 @@
 import React from "react";
-import { Calculator, FileText, Shield, Clock, CheckCircle, ArrowRight, Users, BarChart3, Zap } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Calculator, FileText, Shield, Clock, CheckCircle, ArrowRight, Users, BarChart3 } from "lucide-react";
 
 const TaxPreparation = () => {
   const services = [
@@ -146,20 +145,20 @@ const TaxPreparation = () => {
             Let our certified tax professionals handle your tax preparation needs with accuracy and expertise.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Link 
-              to="/contact"
-              className="bg-gradient-to-r from-purple-500 to-pink-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-purple-600 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/25 inline-flex items-center"
+            <button 
+              className="bg-gradient-to-r from-purple-500 to-pink-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-purple-600 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/25 inline-flex items-center cursor-pointer"
+              style={{ color: 'white !important' }}
             >
-              Get Started Today
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Link>
-            <Link 
-              to="/contact"
-              className="border-2 border-purple-500 text-purple-400 px-8 py-4 rounded-xl font-semibold hover:bg-purple-500 hover:text-white transition-all duration-300 transform hover:scale-105 inline-flex items-center"
+              <span style={{ color: 'white' }}>Get Started Today</span>
+              <ArrowRight className="ml-2 w-5 h-5" style={{ color: 'white' }} />
+            </button>
+            <button 
+              className="border-2 border-purple-500 text-white px-8 py-4 rounded-xl font-semibold hover:bg-purple-500 hover:text-white transition-all duration-300 transform hover:scale-105 inline-flex items-center cursor-pointer"
+              style={{ color: 'white !important' }}
             >
-              Schedule a Consultation
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Link>
+              <span style={{ color: 'white' }}>Schedule a Consultation</span>
+              <ArrowRight className="ml-2 w-5 h-5" style={{ color: 'white' }} />
+            </button>
           </div>
         </div>
       </div>
@@ -167,4 +166,4 @@ const TaxPreparation = () => {
   );
 };
 
-export default TaxPreparation; 
+export default TaxPreparation;

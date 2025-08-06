@@ -1,6 +1,5 @@
 import React from "react";
-import { DollarSign, BarChart3, FileText, Shield, Clock, CheckCircle, ArrowRight, Users, Zap } from "lucide-react";
-import { Link } from "react-router-dom";
+import { DollarSign, BarChart3, FileText, Shield, Clock, CheckCircle, ArrowRight, Users } from "lucide-react";
 
 const Accounts = () => {
   const services = [
@@ -107,20 +106,20 @@ const Accounts = () => {
             Let our expert team manage your accounts with precision and professionalism.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Link 
-              to="/contact"
-              className="bg-gradient-to-r from-green-500 to-teal-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-green-600 hover:to-teal-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-green-500/25 inline-flex items-center"
+            <button 
+              className="bg-gradient-to-r from-green-500 to-teal-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-green-600 hover:to-teal-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-green-500/25 inline-flex items-center cursor-pointer"
+              style={{ color: 'white !important' }}
             >
-              Get Started Today
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Link>
-            <Link 
-              to="/contact"
-              className="border-2 border-green-500 text-green-400 px-8 py-4 rounded-xl font-semibold hover:bg-green-500 hover:text-white transition-all duration-300 transform hover:scale-105 inline-flex items-center"
+              <span style={{ color: 'white' }}>Get Started Today</span>
+              <ArrowRight className="ml-2 w-5 h-5" style={{ color: 'white' }} />
+            </button>
+            <button 
+              className="border-2 border-green-500 text-white px-8 py-4 rounded-xl font-semibold hover:bg-green-500 hover:text-white transition-all duration-300 transform hover:scale-105 inline-flex items-center cursor-pointer"
+              style={{ color: 'white !important' }}
             >
-              Schedule a Consultation
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Link>
+              <span style={{ color: 'white' }}>Schedule a Consultation</span>
+              <ArrowRight className="ml-2 w-5 h-5" style={{ color: 'white' }} />
+            </button>
           </div>
         </div>
       </div>
@@ -128,4 +127,4 @@ const Accounts = () => {
   );
 };
 
-export default Accounts; 
+export default Accounts;

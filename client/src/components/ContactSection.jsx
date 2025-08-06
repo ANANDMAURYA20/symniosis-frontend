@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, User, MessageSquare, Building, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { apiService } from '../services/api';
 
 const ContactSection = () => {
   const navigate=useNavigate();
@@ -27,24 +28,30 @@ const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        phone: '',
-        service: '',
-        message: ''
-      });
-    }, 3000);
+    try {
+      const result = await apiService.submitContact(formData);
+      
+      setIsSubmitted(true);
+      console.log('✅ Contact form submitted successfully:', result);
+      
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          phone: '',
+          service: '',
+          message: ''
+        });
+      }, 3000);
+    } catch (error) {
+      console.error('❌ Form submission failed:', error);
+      alert(`Submission failed: ${error.message || 'Please try again later'}`);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const services = [

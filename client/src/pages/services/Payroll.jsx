@@ -108,19 +108,19 @@ const Payroll = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link 
-              to="/contact"
-              className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-indigo-500/25 inline-flex items-center"
-            >
-              Get Started Today
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Link>
-            <Link 
-              to="/contact"
-              className="border-2 border-indigo-500 text-indigo-400 px-8 py-4 rounded-xl font-semibold hover:bg-indigo-500 hover:text-white transition-all duration-300 transform hover:scale-105 inline-flex items-center"
-            >
-              Schedule a Consultation
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Link>
+                         to="/contact"
+                         className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-emerald-600 hover:to-teal-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-emerald-500/25 inline-flex items-center"
+                       >
+                         <span style={{ color: 'white' }}>Get Started Today</span>
+                         <ArrowRight className="ml-2 w-5 h-5" style={{ color: 'white' }} />
+                       </Link>
+                       <Link 
+                         to="/contact"
+                         className="border-2 border-emerald-500 text-emerald-400 px-8 py-4 rounded-xl font-semibold hover:bg-emerald-500 hover:text-white transition-all duration-300 transform hover:scale-105 inline-flex items-center"
+                       >
+                        <span style={{ color: 'white' }}>Schedule a Consultation</span>
+                         <ArrowRight className="ml-2 w-5 h-5" style={{ color: 'white' }} />
+                       </Link>
           </div>
         </div>
       </div>
